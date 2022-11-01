@@ -1,39 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type State = {
-  count: number;
-  name: string;
+  id: number | null;
+  user_id: string | null;
+  name: string | null;
 };
 
+const initialState = {
+  id: null,
+  user_id: null,
+  name: null,
+} as State;
+
 const authSlice = createSlice({
-  name: "test",
+  name: "auth",
 
-  initialState: {
-    count: 0,
-    name: "",
-  } as State,
-
+  initialState,
   reducers: {
-    plus: (state) => {
-      state.count += 1;
+    setAuth: (state, action) => {
+      state.id = action.payload.id;
+      state.user_id = action.payload.user_id;
+      state.name = action.payload.name;
     },
-    minus: (state) => {
-      state.count -= 1;
-    },
-    changeName: {
-      reducer: (state, action: PayloadAction<{ name: string }>) => {
-        state.name = action.payload.name;
-      },
-      prepare: (name: string) => ({
-        payload: {
-          name: name,
-        },
-      }),
+    removeAuth: (state) => {
+      state = initialState;
     },
   },
 });
 
 // action
-export const { plus, minus, changeName } = authSlice.actions;
+export const { setAuth, removeAuth } = authSlice.actions;
 // reducer
 export default authSlice.reducer;

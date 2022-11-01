@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 // reducer
 import auth from "./auth";
+import ui from "./ui";
 
 export const store = configureStore({
   reducer: {
     auth,
+    ui,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
