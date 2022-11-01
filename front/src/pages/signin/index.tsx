@@ -1,3 +1,4 @@
+import { Button, Input, Paper, TextField } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 
@@ -53,18 +54,32 @@ export default function Signin() {
   };
 
   return (
-    <div>
+    <>
       <div>
-        <span>아이디</span>
-        <input type="text" name="user_id" value={inputs.user_id} onChange={onChangeInputs} />
+        <Paper style={{}}>
+          <div>
+            <TextField size="small" label="ID" variant="outlined" name="user_id" value={inputs.user_id} onChange={onChangeInputs} />
+          </div>
+          <div>
+            <TextField size="small" label="PASSWORD" variant="outlined" name="password" value={inputs.password} onChange={onChangeInputs} />
+          </div>
+          <div>
+            {isLoading === true ? (
+              <Button disabled variant="outlined" onClick={onSignin}>
+                signin
+              </Button>
+            ) : (
+              <Button variant="outlined" onClick={onSignin}>
+                signin
+              </Button>
+            )}
+
+            <Button variant="contained" disableElevation>
+              signup
+            </Button>
+          </div>
+        </Paper>
       </div>
-      <div>
-        <span>패스워드</span>
-        <input type="text" name="password" value={inputs.password} onChange={onChangeInputs} />
-      </div>
-      <div>
-        <button onClick={onSignin}>signin</button>
-      </div>
-    </div>
+    </>
   );
 }

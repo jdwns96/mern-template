@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import {
-  Route,
-  Routes,
-  Navigate,
-  useNavigate,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate, Link, useLocation } from "react-router-dom";
 import client from "src/libs/axios";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { setAuth } from "src/store/auth";
@@ -44,7 +37,7 @@ export default function App() {
             id: data.user.id,
             user_id: data.user.user_id,
             name: data.user.name,
-          })
+          }),
         );
       } catch (e) {
         console.log(e);
@@ -61,10 +54,6 @@ export default function App() {
   return (
     <>
       <Routes location={location} key={location.pathname}>
-        {/* {id &&
-          authRoutes.map(({ key, path, Component }) => (
-            <Route key={key} path={path} element={<Component />} />
-          ))} */}
         {routes.map(({ key, path, Component }) => (
           <Route key={key} path={path} element={<Component />} />
         ))}
