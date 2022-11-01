@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="js/axios.js"></script>
+  </head>
+  <body>
+    <div class="form">
+      <input type="text" name="" id="" class="form__id" placeholder="user id" />
+      <input
+        type="text"
+        name=""
+        id=""
+        class="form__password"
+        placeholder="password"
+      />
+      <button class="form__submit-btn">로그인</button>
+    </div>
+    <div class="main" style="display: none">
+      <div class="main__info"></div>
+      <div>
+        <button class="main__API-btn">Give ME DATA !</button>
+      </div>
+    </div>
+    <script>
+      const User = {
+        id: null,
+        user_id: null,
+        name: null,
+        accessToken: null,
+      };
+
+      const $form = document.querySelector(".form");
+      const $formId = document.querySelector(".form__id");
+      const $formPassword = document.querySelector(".form__password");
+      const $formSubmitBtn = document.querySelector(".form__submit-btn");
+
+      const $main = document.querySelector(".main");
+      const $mainInfo = document.querySelector(".main__info");
+      const $mainApiBtn = document.querySelector(".main__API-btn");
+    </script>
+    <script>
+      // axios middleware
+      const client = axios.create({
+        baseURL: "http://localhost:8888",
+      });
+      client.interceptors.request.use(
+        function (config) {
+          return config;
+        },
+        function (error) {
+          // 요청 에러 직전 호출됩니다.
+          return Promise.reject(error);
+        }
+      );
+
+      client.interceptors.response.use(
+        // success
+        function (response) {
+          return response;
+        },
+        // failure
+        async function (error) {
+          console.log(error, "1 axios handler");
+          const {
+            config,
+            response: { status },
+          } = error;
+          if (status === 419) {
+            console.log("2 access token expired");
+            const originalRequest = config;
+            const refreshToken = localStorage.getItem("refresh");
+            if (!refreshToken) {
+              console.log("2-1 refresh 토큰이 없다 - 완전 로그아웃 상태");
+              return Promise.reject(error);
+            }
+            const response = await client.get("/login-check", {
+              headers: {
+                refresh: refreshToken,
+              },
+            });
+            console.log("3-1 토큰 재확인 요청");
+            const { data } = response;
+            setAuth(data);
+            originalRequest.headers.authorization = data.token.accessToken;
+            console.log(originalRequest);
+            return client(originalRequest);
+          }
+          return Promise.reject(error);
+        }
+      );
+    </script>
+    <script>
+      function setAuth(data) {
+        console.log("setAuth");
+        User.accessToken = data.token.accessToken; // accessToken
+        client.defaults.headers.authorization = `${data.token.accessToken}`;
+        localStorage.setItem("refresh", data.token.refreshToken);
+      }
+
+      function loginRender(data) {
+        User.id = data.user.user_id;
+        User.user_id = data.user.user_id;
+        User.name = data.user.name;
+
+        $form.style.display = "none";
+        $main.style.display = "block";
+        $main.display = "block";
+        const textHtml = `
+            <div>
+              <p>id : ${User.id}  </p>
+              <p>user_id : ${User.user_id}  </p>
+              <p>name : ${User.name}  </p>
+            </div>
+          `;
+        $mainInfo.innerHTML = textHtml;
+      }
+    </script>
+    <script>
+      window.addEventListener("load", async (e) => {
+        console.log("initialization");
+        const refreshToken = localStorage.getItem("refresh");
+
+        if (!refreshToken) return null;
+
+        try {
+          const response = await client.get("/login-check", {
+            headers: {
+              refresh: refreshToken,
+            },
+          });
+          console.log(response);
+          const { data } = response;
+          loginRender(data);
+          setAuth(data);
+        } catch (e) {
+          console.log(e);
+          console.log(e.response.status);
+        }
+      });
+    </script>
+    <script>
+      $formSubmitBtn.addEventListener("click", async (e) => {
+        const user_id = $formId.value;
+        const password = $formPassword.value;
+
+        try {
+          const response = await client.post("/login", {
+            user_id,
+            password,
+          });
+          console.log(response);
+          const { data } = response;
+          loginRender(data);
+          setAuth(data);
+        } catch (e) {}
+      });
+
+      $mainApiBtn.addEventListener("click", async (e) => {
+        try {
+          const response = await client.get("/test");
+          console.log("실행 함수", response);
+          $mainInfo.innerHTML += `<div>${response.data.message}</div>`;
+        } catch (e) {}
+      });
+    </script>
+  </body>
+</html>
