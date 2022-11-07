@@ -14,7 +14,7 @@ export default function Home() {
     <AppTemplate>
       <section className="w-full h-full">
         <section className="w-full h-full max-w-xl mx-auto px-3">
-          <main>
+          <main className="pt-8">
             {new Array(10).fill(0).map((v, i) => (
               <Snack key={i} />
             ))}

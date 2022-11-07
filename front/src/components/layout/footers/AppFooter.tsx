@@ -10,5 +10,9 @@ import { Telegram } from "@mui/icons-material";
 export default function AppFooter() {
   const [value, setValue] = React.useState(0);
 
-  return <footer className="z-10"></footer>;
+  return (
+    <footer className="flex justify-center my-4">
+      <div className=" flex  justify-center items-center text-xs px-4">© Copyright 2022 jdwns96. All rights reserved.</div>
+    </footer>
+  );
 }
