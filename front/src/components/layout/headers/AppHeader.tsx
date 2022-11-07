@@ -1,13 +1,13 @@
-import { EggAlt, MenuBook } from "@mui/icons-material";
-import { AppBar, IconButton, Menu, Toolbar, Typography } from "@mui/material";
 import React from "react";
+import { EggAlt, Home, MenuBook, Person, Search } from "@mui/icons-material";
+import { AppBar, IconButton, Menu, Toolbar, Typography } from "@mui/material";
 
 export default function AppHeader() {
   return (
-    <>
+    <header className="fixed top-0 left-0 right-0">
       <AppBar position="static">
         <Toolbar variant="dense" className="flex justify-between">
-          <div className="flex">
+          <div className="flex text-snack-gold cursor-pointer">
             <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
               <EggAlt />
             </IconButton>
@@ -16,11 +16,18 @@ export default function AppHeader() {
             </Typography>
           </div>
           <ul className="flex">
-            <li className="h-full">1</li>
-            <li className="h-full">1</li>
+            <li className="relative p-2 px-3 cursor-pointer hover:text-snack-gold transition-all snack-after-bar">
+              <Home />
+            </li>
+            <li className="relative p-2 px-3 cursor-pointer hover:text-snack-gold transition-all snack-after-bar">
+              <Search />
+            </li>
+            <li className="relative p-2 px-3 cursor-pointer hover:text-snack-gold transition-all">
+              <Person />
+            </li>
           </ul>
         </Toolbar>
       </AppBar>
-    </>
+    </header>
   );
 }
