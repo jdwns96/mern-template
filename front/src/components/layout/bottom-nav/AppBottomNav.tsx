@@ -1,10 +1,10 @@
 import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import FolderIcon from "@mui/icons-material/Folder";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { Home, Person, Search, Telegram } from "@mui/icons-material";
+
+const BOTTOM_NAV = { width: "100%", backgroundColor: "#1f8ce6", ".Mui-selected": { color: "#ffd700" } };
+const BOTTOM_NAV_ITEMS = { color: "#FFF" };
 
 export default function AppBottomNav() {
   const [value, setValue] = React.useState("recents");
@@ -14,12 +14,12 @@ export default function AppBottomNav() {
   };
 
   return (
-    <nav className="fixed left-0 right-0 bottom-0 bg-white justify-center flex md:hidden">
-      <BottomNavigation sx={{ width: 500 }} value={value} onChange={handleChange}>
-        <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-        <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+    <nav className="fixed left-0 right-0 bottom-0 bg-snack-sky justify-center flex md:hidden z-10">
+      <BottomNavigation value={value} onChange={handleChange} sx={BOTTOM_NAV}>
+        <BottomNavigationAction label="Recents" value="recents" icon={<Home />} sx={BOTTOM_NAV_ITEMS} />
+        <BottomNavigationAction label="Favorites" value="favorites" icon={<Search />} sx={BOTTOM_NAV_ITEMS} />
+        <BottomNavigationAction label="Nearby" value="nearby" icon={<Telegram />} sx={BOTTOM_NAV_ITEMS} />
+        <BottomNavigationAction label="Folder" value="folder" icon={<Person />} sx={BOTTOM_NAV_ITEMS} />
       </BottomNavigation>
     </nav>
   );

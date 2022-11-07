@@ -11,7 +11,7 @@ module.exports = {
         "snack-orange": "#EA6a62",
         "snack-sky": "#1f8ce6",
         "snack-pink": "#FF69b4",
-        "snack-gold": "#ffcf40",
+        "snack-gold": "#ffd700",
       },
     },
   },

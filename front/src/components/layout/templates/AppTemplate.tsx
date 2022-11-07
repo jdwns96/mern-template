@@ -8,7 +8,7 @@ interface AppProps {
 export default function AppTemplate({ children }: AppProps) {
   return (
     <>
-      <div className="w-full h-screen">
+      <div className="w-full min-h-screen">
         <AppHeader />
         <div className="pt-12 pb-14 md:pb-0 h-full">{children}</div>
         <AppBottomNav />
