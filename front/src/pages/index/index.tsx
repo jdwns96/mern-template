@@ -14,7 +14,7 @@ export default function Home() {
         <li>{user_id ?? "null"}</li>
         <li>{name ?? "null"}</li>
       </ul>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </div>
   );
 }
