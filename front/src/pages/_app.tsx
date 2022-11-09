@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Route, Routes, Navigate, useNavigate, Link, useLocation } from "react-router-dom";
+import AppSpin from "src/components/common/load/AppSpin";
 import client from "src/libs/axios";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { setAuth } from "src/store/auth";
@@ -49,7 +50,7 @@ export default function App() {
     authentication();
   }, []);
 
-  if (!initial) return null;
+  if (!initial) return <AppSpin />;
 
   return (
     <>

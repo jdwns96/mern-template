@@ -3,7 +3,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { Home, Person, Search, Telegram } from "@mui/icons-material";
 
-const BOTTOM_NAV = { width: "100%", backgroundColor: "#1f8ce6", ".Mui-selected": { color: "#ffd700" } };
+const BOTTOM_NAV = { width: "100%", backgroundColor: "#1f8ce6" /*".Mui-selected": { color: "#ffd700" } */ };
 const BOTTOM_NAV_ITEMS = { color: "#FFF" };
 
 export default function AppBottomNav() {
