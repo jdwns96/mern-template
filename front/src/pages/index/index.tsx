@@ -18,12 +18,6 @@ export default function Home() {
             {new Array(10).fill(0).map((v, i) => (
               <Snack key={i} />
             ))}
-            {/* <div>HOME</div>
-            <ul>
-              <li>{id ?? "null"}</li>
-              <li>{user_id ?? "null"}</li>
-              <li>{name ?? "null"}</li>
-            </ul> */}
           </main>
           <InfinitySpin />
           <AppFooter />
