@@ -69,7 +69,7 @@ export default function AppHeader() {
                   </li>
                 </ul>
                 <div className="flex justify-end border-solid  border-gray-300 px-5 py-2">
-                  <button className="edge-btn edge-btn-orange">
+                  <button className="snack-btn">
                     <span>로그아웃</span>
                   </button>
                 </div>
