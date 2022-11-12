@@ -64,6 +64,7 @@ export default function Signin() {
   return (
     <SignTemplate>
       <section className="flex h-full min-h-screen items-center">
+        <div>asd</div>
         <div className="mx-auto w-96">
           <Paper className="p-8">
             <form action="" onSubmit={onSignin}>
@@ -98,13 +99,13 @@ export default function Signin() {
                       <span>signin</span>
                     </button>
                   ) : (
-                    <button className="snack-btn w-full flex justify-center items-center" onClick={onSignin} type="submit">
+                    <button className="snack-btn w-full flex justify-center items-center " onClick={onSignin} type="submit">
                       <span>signin</span>
                     </button>
                   )}
                 </div>
                 <div className="w-full ml-1">
-                  <button className="snack-btn  w-full flex justify-center items-center" type="button">
+                  <button className="snack-btn  w-full flex justify-center items-center bg-snack-sky text-white" type="button">
                     <span>signup</span>
                   </button>
                 </div>
