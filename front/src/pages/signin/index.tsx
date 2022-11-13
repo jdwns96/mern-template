@@ -13,6 +13,9 @@ import { EggAlt, GitHub } from "@mui/icons-material";
 import { useSigninMutation } from "src/query/signin";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import singinImages from "src/assets/signin-images";
+import Carousel from "react-material-ui-carousel";
+
 type Inputs = { user_id: string; password: string };
 
 export default function Signin() {
@@ -71,14 +74,14 @@ export default function Signin() {
     <main className="w-full h-screen bg-[#fefefe] overflow-hidden">
       <div className="flex h-full">
         <div className="w-full h-full relative hidden lg:flex  flex-col grow ">
-          {/* <Carousel className="relative h-full w-full " indicators={false} stopAutoPlayOnHover={false} swipe={false} height={"100%"} interval={5000}>
-          {signinImageList.map((v) => (
-            // @TODO image resize
-            <div className="w-full h-full min-h-screen relative ">
-              <img className="w-full h-full min-h-screen object-cover" src={v} alt="snack" />
-            </div>
-          ))}
-        </Carousel> */}
+          <Carousel className="relative h-full w-full " indicators={false} stopAutoPlayOnHover={false} swipe={false} height={"100%"} interval={7000}>
+            {singinImages.map((v) => (
+              // @TODO image resize
+              <div className="w-full h-full min-h-screen relative ">
+                <img className="w-full h-full min-h-screen object-cover" src={v} alt="snack" />
+              </div>
+            ))}
+          </Carousel>
         </div>
         <div className="right-component w-full h-full min-h-screen  overflow-auto">
           <div className="px-[5vw] py-[3.5vw] min-h-screen flex flex-col">
