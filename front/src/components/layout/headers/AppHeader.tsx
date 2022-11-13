@@ -53,7 +53,12 @@ export default function AppHeader() {
             </Typography>
           </div>
           <ul className="flex items-center h-12">
-            <li className="relative p-2 px-3 cursor-pointer hover: transition-all snack-after-bar hidden md:block">
+            <li
+              className="relative p-2 px-3 cursor-pointer hover: transition-all snack-after-bar hidden md:block"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <Home />
             </li>
             <li className="relative p-2 px-3 cursor-pointer hover: transition-all snack-after-bar hidden md:block">
@@ -87,7 +92,7 @@ export default function AppHeader() {
                   <li
                     className="flex items-center  font-semibold px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer"
                     onClick={() => {
-                      navigate(`/user/${user_id}`);
+                      navigate(`/${user_id}`);
                     }}
                   >
                     <div className="text-sm">

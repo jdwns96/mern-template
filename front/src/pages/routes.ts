@@ -1,7 +1,7 @@
 import HomePage from "./index";
 import SigninPage from "./signin";
 
-import UserIdPage from "./user/[user_id]";
+import UserIdPage from "./[user_id]";
 
 import NotFound from "./404";
 
@@ -24,7 +24,7 @@ export const routes: Routes[] = [
   },
   {
     key: 3,
-    path: "/user/:user_id",
+    path: "/:user_id",
     Component: UserIdPage,
   },
 
