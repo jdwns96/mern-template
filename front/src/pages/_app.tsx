@@ -6,7 +6,7 @@ import client from "src/libs/axios";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { setAuth } from "src/store/auth";
 // pages
-import { routes, authRoutes } from "./routes";
+import { routes } from "./routes";
 
 export default function App() {
   const location = useLocation();

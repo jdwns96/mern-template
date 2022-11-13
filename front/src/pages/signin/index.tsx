@@ -18,7 +18,7 @@ import Carousel from "react-material-ui-carousel";
 
 type Inputs = { user_id: string; password: string };
 
-export default function Signin() {
+export default function SigninPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

@@ -7,7 +7,7 @@ import AppTemplate from "src/components/layout/templates/AppTemplate";
 import AppFooter from "src/components/layout/footers/AppFooter";
 import InfinitySpin from "src/components/common/load/InfinitySpin";
 
-export default function Home() {
+export default function HomePage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
 
   return (

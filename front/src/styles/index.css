@@ -80,3 +80,8 @@
 body {
   background-color: #f2f3f3;
 }
+
+.snack-background {
+  background-color: #afbed9;
+  background-image: linear-gradient(0deg, #e8f6fb 0%, #fdfaf1 100%);
+}
