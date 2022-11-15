@@ -7,13 +7,16 @@ import imageTest from "src/assets/images/image-test.jpg";
 import cn from "classnames";
 import { ModeEditOutline } from "@mui/icons-material";
 import AppFooter from "src/components/layout/footers/AppFooter";
+import { useUserQuery } from "src/query/user";
 
 export default function DynamicUserIdPage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
-
   // get user_id from url
   const { user_id: url_user_id } = useParams<{ user_id: string }>();
 
+  const { isLoading, data: userData } = useUserQuery(url_user_id);
+
+  console.log(userData);
   return (
     <AppTemplate>
       <div className="w-full h-full">
@@ -43,30 +46,31 @@ export default function DynamicUserIdPage() {
             <main className="py-2 px-6 pb-4">
               <div>
                 <h1 className=" flex justify-between">
-                  {/* @TODO 계정 정보를 서버에서 요청 받고 불러와야함, state 사용 x */}
-                  <span className="text-2xl font-bold ">{user_id}</span>
-                  {url_user_id === user_id && (
-                    <div className={cn("block")}>
-                      <button className="snack-btn ml-4">
-                        <ModeEditOutline />
-                      </button>
-                    </div>
-                  )}
+                  <span className="text-2xl font-bold ">{userData?.user_id}</span>
                 </h1>
                 <p>
-                  <span>이름</span>
+                  <span>{userData?.name}</span>
                 </p>
                 <p>
-                  <span>설명</span>
+                  <span>{userData?.introduction}</span>
                 </p>
               </div>
               <div className="flex">
-                <div>
-                  <button className="snack-btn">메세지</button>
-                </div>
-                <div>
-                  <button className="snack-btn">팔로우</button>
-                </div>
+                {id === userData?.id ? (
+                  <>
+                    <button className="snack-btn">정보 관리</button>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <button className="snack-btn">메세지</button>
+                    </div>
+                    <div>
+                      <button className="snack-btn">팔로우</button>
+                      {/* <button className="snack-btn">언팔로우</button> */}
+                    </div>
+                  </>
+                )}
               </div>
             </main>
           </article>

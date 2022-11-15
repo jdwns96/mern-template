@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { WebSocket, WebSocketServer } = require("ws");
+const dotenv = require("dotenv");
+const db = require("./models");
 // built in module
 const path = require("path"); // 경로 설정
 // create module
@@ -11,10 +13,30 @@ const path = require("path"); // 경로 설정
 const routes = require("./routes");
 
 // DB
+const sqlInitUtils = require("./utils/sql-init-utils");
 const userTable = require("./db/user");
 
+dotenv.config();
 // express instance
 const app = express();
+// mysql
+// db.then((res) => {
+//   res.sequelize
+//     .sync()
+//     .then(() => {
+//       console.log("db 연결 성공");
+//     })
+//     .catch(console.error);
+// });
+
+db.sequelize
+  .sync({ force: true })
+  .then(() => {
+    console.log("db 연결 성공");
+    sqlInitUtils();
+  })
+  .catch(console.error);
+
 // port
 app.set("port", process.env.PORT || 8888);
 // cors

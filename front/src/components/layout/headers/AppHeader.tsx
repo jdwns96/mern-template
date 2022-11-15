@@ -81,9 +81,9 @@ export default function AppHeader() {
               </div>
               <article
                 className={cn(
-                  "block  transition-all z-50 overflow-auto bg-white text-[#262626] shadow-snack",
+                  "block  transition-all z-50 overflow-auto bg-white text-[#262626] shadow-lg",
                   "fixed top-12 bottom-0 left-0 right-0 w-full h-screen border-t border-solid ",
-                  "md:absolute md:top-12 md:right-0 md:bottom-[unset] md:w-[240px] md:h-auto md:border md:border-solid ",
+                  "md:absolute md:top-14 md:right-0 md:bottom-[unset] md:w-[240px] md:h-auto md:border md:border-solid ",
                   "md:left-[unset]",
                   !accountToggle && "hidden",
                 )}

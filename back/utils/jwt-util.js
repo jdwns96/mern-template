@@ -1,13 +1,18 @@
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = "JWT";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const TOKEN_VERIFY = 0; // 로그인 상태
 const TOKEN_EXPIRED = 1; // (기간 만료)로그인 상태 하지만 시간이 지나서 재발급이 필요함
 const TOKEN_INVALID = 2; // (유효하지 않음)잘못된 토큰이거나 로그인 상태가 아님
 
+// @TODO this bind
 const jwtUtil = {
-  // access token Issuance
+  TOKEN_VERIFY: 0, // 로그인 상태
+  TOKEN_EXPIRED: 1, // (기간 만료)로그인 상태 하지만 시간이 지나서 재발급이 필요함
+  TOKEN_INVALID: 2, // (유효하지 않음)잘못된 토큰이거나 로그인 상태가 아님
+
+  // jwtUtil: {
   accessSign(user) {
     const payload = {
       user_id: user.user_id,
@@ -16,7 +21,7 @@ const jwtUtil = {
 
     const accessToken = jwt.sign(payload, JWT_SECRET, {
       algorithm: "HS256",
-      expiresIn: "3s", // 30초
+      expiresIn: "30s", // 30초
     });
     return accessToken;
   },
@@ -58,7 +63,7 @@ const jwtUtil = {
     const payload = {};
     const refreshToken = jwt.sign(payload, JWT_SECRET, {
       algorithm: "HS256",
-      expiresIn: "10s", // 14일 "14d"
+      expiresIn: "10h", // 14일 "14d"
     });
     return refreshToken;
   },
@@ -93,6 +98,9 @@ const jwtUtil = {
       };
     }
   },
+  // },
+
+  // access token Issuance
 };
 
 module.exports = jwtUtil;

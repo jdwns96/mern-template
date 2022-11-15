@@ -1,12 +1,13 @@
 const jwt = require("jsonwebtoken");
-const { accessVerify } = require("../utils/jwt-util");
+const {
+  accessVerify,
+  TOKEN_VERIFY,
+  TOKEN_EXPIRED,
+  TOKEN_INVALID,
+} = require("../utils/jwt-util");
 
 // api 접근 권한이 있는지 확인하는 미들웨어
 // accessToken 권한 체크
-
-const TOKEN_VERIFY = 0; // 로그인 상태
-const TOKEN_EXPIRED = 1; // (기간 만료)로그인 상태 하지만 시간이 지나서 재발급이 필요함
-const TOKEN_INVALID = 2; // (유효하지 않음)잘못된 토큰이거나 로그인 상태가 아님
 
 const authMiddleware = (req, res, next) => {
   const { authorization } = req.headers;
