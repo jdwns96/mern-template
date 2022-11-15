@@ -46,31 +46,31 @@ export default function DynamicUserIdPage() {
             <main className="py-2 px-6 pb-4">
               <div>
                 <h1 className=" flex justify-between">
-                  <span className="text-2xl font-bold ">{userData?.user_id}</span>
+                  <p className="text-2xl font-bold ">{userData?.user_id}</p>
+                  <div className="flex">
+                    {id === userData?.id ? (
+                      <>
+                        <button className="snack-btn">정보 관리</button>
+                      </>
+                    ) : (
+                      <>
+                        <div>
+                          <button className="snack-btn">메세지</button>
+                        </div>
+                        <div>
+                          <button className="snack-btn">팔로우</button>
+                          {/* <button className="snack-btn">언팔로우</button> */}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </h1>
                 <p>
                   <span>{userData?.name}</span>
                 </p>
                 <p>
-                  <span>{userData?.introduction}</span>
+                  <span>{userData?.introduction ?? "-"}</span>
                 </p>
-              </div>
-              <div className="flex">
-                {id === userData?.id ? (
-                  <>
-                    <button className="snack-btn">정보 관리</button>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <button className="snack-btn">메세지</button>
-                    </div>
-                    <div>
-                      <button className="snack-btn">팔로우</button>
-                      {/* <button className="snack-btn">언팔로우</button> */}
-                    </div>
-                  </>
-                )}
               </div>
             </main>
           </article>
@@ -86,13 +86,13 @@ export default function DynamicUserIdPage() {
                 <div className="w-full">
                   <span className="cursor-pointer">
                     <span className="text-snack-sky ">팔로워</span>
-                    <span className="ml-4">0</span>
+                    <span className="ml-4">{userData?.followee_cnt}</span>
                   </span>
                 </div>
                 <div className="w-full">
                   <span className="cursor-pointer">
                     <span className="text-snack-sky ">팔로우</span>
-                    <span className="ml-4">0</span>
+                    <span className="ml-4">{userData?.following_cnt}</span>
                   </span>
                 </div>
               </div>

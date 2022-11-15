@@ -8,6 +8,8 @@ interface UserResponse {
   introduction: string;
   profile_image: string;
   background_image: string;
+  followee_cnt: number;
+  following_cnt: number;
 }
 
 export const userAPI = (user_id: string | undefined) => client.get<UserResponse>(`/user/${user_id}`).then((res) => res.data);

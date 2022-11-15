@@ -45,5 +45,20 @@ module.exports = class User extends Model {
       }
     );
   }
-  static associate(db) {}
+  static associate(db) {
+    db.User.hasMany(db.Comment);
+
+    db.User.belongsToMany(db.User, {
+      through: "Follow",
+      as: "Followee",
+      foreignKey: "FollowingId",
+      // document: "팔로우를 하는 사람",
+    });
+    db.User.belongsToMany(db.User, {
+      through: "Follow",
+      as: "Following",
+      foreignKey: "FolloweeId",
+      // document: "팔로우를 받는 사람",
+    });
+  }
 };

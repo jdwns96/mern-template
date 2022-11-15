@@ -5,6 +5,7 @@ const env = process.env.NODE_ENV || "development";
 const config = require("../config/config")[env];
 
 const user = require("./user");
+const comment = require("./comment");
 
 const db = {};
 // async function initializion() {
@@ -42,6 +43,7 @@ const db = {};
 // }
 
 db.User = user;
+db.Comment = comment;
 
 const sequelize = new Sequelize(
   config.database,

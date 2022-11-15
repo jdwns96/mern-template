@@ -21,7 +21,7 @@ const jwtUtil = {
 
     const accessToken = jwt.sign(payload, JWT_SECRET, {
       algorithm: "HS256",
-      expiresIn: "30s", // 30초
+      expiresIn: "10s", // 30초
     });
     return accessToken;
   },
@@ -63,7 +63,7 @@ const jwtUtil = {
     const payload = {};
     const refreshToken = jwt.sign(payload, JWT_SECRET, {
       algorithm: "HS256",
-      expiresIn: "10h", // 14일 "14d"
+      expiresIn: "30s", // 14일 "14d"
     });
     return refreshToken;
   },
