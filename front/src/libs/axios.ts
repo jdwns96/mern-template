@@ -1,4 +1,6 @@
 import axios from "axios";
+// @version axios "^0.19.2",
+// 최신 버전 사용시 미들웨어 사용법이 달라짐, 해당 코드가 정상적으로 동작하지 않음
 
 // axios middleware
 const client = axios.create({
@@ -11,7 +13,7 @@ client.interceptors.request.use(
   function (error) {
     // 요청 에러 직전 호출됩니다.
     return Promise.reject(error);
-  }
+  },
 );
 
 client.interceptors.response.use(
@@ -25,7 +27,10 @@ client.interceptors.response.use(
       config,
       response: { status },
     } = error;
+    console.log(status);
+    console.log(config);
     if (status === 419) {
+      console.log("여긴 오냐?");
       const originalRequest = config;
       const refreshToken = localStorage.getItem("refresh");
       if (!refreshToken) {
@@ -45,7 +50,7 @@ client.interceptors.response.use(
       return client(originalRequest);
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default client;

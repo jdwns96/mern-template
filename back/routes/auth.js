@@ -34,6 +34,7 @@ router.post("/login", async (req, res) => {
     }
 
     const accessToken = accessSign({
+      id: exUser.id,
       user_id: exUser.user_id,
       name: exUser.name,
     });
@@ -116,6 +117,7 @@ router.get("/login-check", async (req, res) => {
       }
 
       const accessToken = accessSign({
+        id: exUser.id,
         user_id: exUser.user_id,
         name: exUser.name,
       });

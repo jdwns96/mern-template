@@ -7,7 +7,7 @@ import imageTest from "src/assets/images/image-test.jpg";
 import cn from "classnames";
 import { ModeEditOutline } from "@mui/icons-material";
 import AppFooter from "src/components/layout/footers/AppFooter";
-import { useUserQuery } from "src/query/user";
+import { useUserFollowingCheckQuery, useUserQuery } from "src/query/user";
 
 export default function DynamicUserIdPage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
@@ -15,6 +15,18 @@ export default function DynamicUserIdPage() {
   const { user_id: url_user_id } = useParams<{ user_id: string }>();
 
   const { isLoading, data: userData } = useUserQuery(url_user_id);
+  const { isLoading: isUserFollowingCheckLoading, isError: isUserFollowingCheckError, data: userFollowingCheckData } = useUserFollowingCheckQuery(url_user_id, user_id);
+
+  const onFollow = () => {
+    console.log("follow");
+    if (!id) {
+      console.log("not login");
+    }
+  };
+
+  const onUnfollowClick = () => {
+    console.log("unfollow");
+  };
 
   console.log(userData);
   return (
@@ -58,8 +70,16 @@ export default function DynamicUserIdPage() {
                           <button className="snack-btn">메세지</button>
                         </div>
                         <div>
-                          <button className="snack-btn">팔로우</button>
-                          {/* <button className="snack-btn">언팔로우</button> */}
+                          {isUserFollowingCheckError || !userFollowingCheckData?.isFollowing ? (
+                            <button className="snack-btn" onClick={onFollow}>
+                              팔로우
+                            </button>
+                          ) : (
+                            <button className="snack-btn bg-snack-blue text-white" onClick={onUnfollowClick}>
+                              언팔로우
+                            </button>
+                          )}
+                          {/*  */}
                         </div>
                       </>
                     )}

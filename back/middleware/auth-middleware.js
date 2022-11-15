@@ -37,6 +37,7 @@ const authMiddleware = (req, res, next) => {
   }
   // 검증 완료
   req.user = {
+    id: result.id,
     user_id: result.user_id,
     name: result.name,
   };

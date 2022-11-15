@@ -8,6 +8,8 @@ import AppFooter from "src/components/layout/footers/AppFooter";
 import InfinitySpin from "src/components/common/load/InfinitySpin";
 import { useEffect, useState } from "react";
 
+import client from "src/libs/axios";
+
 export default function HomePage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
 
@@ -48,6 +50,17 @@ export default function HomePage() {
       <section className="w-full h-full">
         <section className="w-full h-full max-w-xl mx-auto px-3">
           <main className="pt-8">
+            <div>
+              <button
+                className="snack-btn"
+                onClick={async () => {
+                  const res = await client.get("/test");
+                  console.log(res);
+                }}
+              >
+                text btn
+              </button>
+            </div>
             {data.map((v, i) => (
               <Snack key={i} />
             ))}

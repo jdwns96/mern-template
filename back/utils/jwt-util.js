@@ -15,6 +15,7 @@ const jwtUtil = {
   // jwtUtil: {
   accessSign(user) {
     const payload = {
+      id: user.id,
       user_id: user.user_id,
       name: user.name,
     };
@@ -34,6 +35,7 @@ const jwtUtil = {
       // success
       return {
         _status: TOKEN_VERIFY,
+        id: decoded.id,
         user_id: decoded.user_id,
         name: decoded.name,
       };
