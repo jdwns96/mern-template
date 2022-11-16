@@ -30,7 +30,6 @@ client.interceptors.response.use(
     console.log(status);
     console.log(config);
     if (status === 419) {
-      console.log("여긴 오냐?");
       const originalRequest = config;
       const refreshToken = localStorage.getItem("refresh");
       if (!refreshToken) {

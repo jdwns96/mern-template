@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AppTemplate from "src/components/layout/templates/AppTemplate";
 import { useAppSelector } from "src/store";
 
@@ -11,6 +11,8 @@ import { useUserFollowingCheckQuery, useUserQuery } from "src/query/user";
 
 export default function DynamicUserIdPage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
+  const navigate = useNavigate();
+
   // get user_id from url
   const { user_id: url_user_id } = useParams<{ user_id: string }>();
 
@@ -18,9 +20,10 @@ export default function DynamicUserIdPage() {
   const { isLoading: isUserFollowingCheckLoading, isError: isUserFollowingCheckError, data: userFollowingCheckData } = useUserFollowingCheckQuery(url_user_id, user_id);
 
   const onFollow = () => {
-    console.log("follow");
     if (!id) {
       console.log("not login");
+      alert("로그인이 필요합니다.");
+      navigate("/signin");
     }
   };
 
@@ -75,7 +78,7 @@ export default function DynamicUserIdPage() {
                               팔로우
                             </button>
                           ) : (
-                            <button className="snack-btn bg-snack-blue text-white" onClick={onUnfollowClick}>
+                            <button className="snack-btn bg-snack-blue hover:bg-snack-blue border-snack-blue text-white" onClick={onUnfollowClick}>
                               언팔로우
                             </button>
                           )}

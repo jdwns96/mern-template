@@ -57,9 +57,6 @@ router.get("/user/:user_id/follow-check", auth, async (req, res, next) => {
       });
     }
 
-    console.log(user_id, other_user_id);
-    console.log(id, exUser.id);
-
     const follow_check_query = await sequelize.query(
       `SELECT * FROM template.Follow WHERE FollowingId = ${id} AND FolloweeId = ${exUser.id}`
     );
