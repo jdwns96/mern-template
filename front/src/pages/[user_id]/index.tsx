@@ -17,6 +17,7 @@ export default function DynamicUserIdPage() {
   const { user_id: url_user_id } = useParams<{ user_id: string }>();
 
   const { isLoading, data: userData } = useUserQuery(url_user_id);
+  // @TODO
   const { isLoading: isUserFollowingCheckLoading, isError: isUserFollowingCheckError, data: userFollowingCheckData } = useUserFollowingCheckQuery(url_user_id, user_id);
 
   const onFollow = () => {
