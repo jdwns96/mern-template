@@ -2,6 +2,8 @@ import HomePage from "./index";
 import SigninPage from "./signin";
 
 import UserIdPage from "./[user_id]";
+import UserFolloweePage from "./[user_id]/followee";
+import UserFollowingPage from "./[user_id]/following";
 import AccountEditPage from "./account/edit";
 
 import NotFound from "./404";
@@ -30,6 +32,16 @@ export const routes: Routes[] = [
   },
   {
     key: 4,
+    path: "/:user_id/followee",
+    Component: UserFolloweePage,
+  },
+  {
+    key: 5,
+    path: "/:user_id/following",
+    Component: UserFollowingPage,
+  },
+  {
+    key: 7,
     path: "/account/edit",
     Component: AccountEditPage,
   },

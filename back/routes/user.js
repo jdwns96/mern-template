@@ -5,6 +5,7 @@ const auth = require("../middleware/auth-middleware");
 
 const router = express.Router();
 
+// 유저 정보조회
 router.get("/user/:user_id", async (req, res, next) => {
   try {
     const { user_id } = req.params;
@@ -43,6 +44,8 @@ router.get("/user/:user_id", async (req, res, next) => {
   }
 });
 
+// 유저 팔로우 상태 확인
+// @TODO 코드 수정
 router.get("/user/:user_id/follow-check", auth, async (req, res, next) => {
   try {
     const { user_id: other_user_id } = req.params;
@@ -71,6 +74,39 @@ router.get("/user/:user_id/follow-check", auth, async (req, res, next) => {
     return res.status(200).json({
       isFollowing: true,
     });
+  } catch (e) {
+    next(e);
+  }
+});
+
+// 팔로우 목록 을 조회, 페이지 네이션
+router.get("/user/:user_id/following", async (req, res, next) => {
+  try {
+    const { user_id } = req.params;
+    const { page } = req.query;
+
+    const exUser = await User.findOne({
+      where: { user_id },
+    });
+    if (!exUser) {
+      return res.status(404).json({
+        message: "존재하지 않는 사용자입니다.",
+      });
+    }
+
+    const sql = `
+    SELECT template.users.id, template.users.user_id, template.users.name, template.users.profile_image, template.users.introduction
+    FROM template.Follow
+    JOIN template.users ON template.Follow.FolloweeId = template.users.id
+    WHERE FollowingId = ${exUser.id}
+    LIMIT ${(page - 1) * 10}, 10
+  `;
+
+    const result = await sequelize.query(sql, {
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    return res.status(200).json(result);
   } catch (e) {
     next(e);
   }

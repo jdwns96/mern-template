@@ -20,9 +20,69 @@ async function sqlInitUtils() {
       password: hash,
       name: "kane william",
     });
+    await User.create({
+      user_id: " baz",
+      password: hash,
+      name: " park jimin",
+    });
+    await User.create({
+      user_id: " qux",
+      password: hash,
+      name: " kim taehyung",
+    });
+    await User.create({
+      user_id: " quux",
+      password: hash,
+      name: " jeon jungkook",
+    });
+    await User.create({
+      user_id: " corge",
+      password: hash,
+      name: " jeon jeongguk",
+    });
+    await User.create({
+      user_id: " grault",
+      password: hash,
+      name: " min yoongi",
+    });
+    await User.create({
+      user_id: " garply",
+      password: hash,
+      name: "  jung hoseok",
+    });
+    await User.create({
+      user_id: " waldo",
+      password: hash,
+      name: " jeon jeongguk",
+    });
+    await User.create({
+      user_id: "  waldo",
+      password: hash,
+      name: "  kim namjoon",
+    });
+    await User.create({
+      user_id: " fred",
+      password: hash,
+      name: " kim seokjin",
+    });
+    await User.create({
+      user_id: " plugh",
+      password: hash,
+      name: " park jimin",
+    });
 
     const user = await User.findOne({ where: { id: 1 } });
     await user.addFollowee(2);
+    await user.addFollowee(3);
+    await user.addFollowee(4);
+    await user.addFollowee(5);
+    await user.addFollowee(6);
+    await user.addFollowee(7);
+    await user.addFollowee(8);
+    await user.addFollowee(9);
+    await user.addFollowee(10);
+    await user.addFollowee(11);
+    await user.addFollowee(12);
   } catch (e) {
     console.log(e);
   }

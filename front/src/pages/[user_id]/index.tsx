@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AppTemplate from "src/components/layout/templates/AppTemplate";
 import { useAppSelector } from "src/store";
 
@@ -108,16 +108,20 @@ export default function DynamicUserIdPage() {
                   </span>
                 </div>
                 <div className="w-full">
-                  <span className="cursor-pointer">
-                    <span className="text-snack-sky ">팔로워</span>
-                    <span className="ml-4">{userData?.followee_cnt}</span>
-                  </span>
+                  <Link to="followee">
+                    <span className="cursor-pointer">
+                      <span className="text-snack-sky ">팔로워</span>
+                      <span className="ml-4">{userData?.followee_cnt}</span>
+                    </span>
+                  </Link>
                 </div>
                 <div className="w-full">
-                  <span className="cursor-pointer">
-                    <span className="text-snack-sky ">팔로우</span>
-                    <span className="ml-4">{userData?.following_cnt}</span>
-                  </span>
+                  <Link to="following">
+                    <span className="cursor-pointer">
+                      <span className="text-snack-sky ">팔로우</span>
+                      <span className="ml-4">{userData?.following_cnt}</span>
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>
