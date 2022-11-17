@@ -79,6 +79,83 @@ router.get("/user/:user_id/follow-check", auth, async (req, res, next) => {
   }
 });
 
+// 페이지네이션 토탈 카운트
+router.get("/user/:user_id/:follow/count", async (req, res, next) => {
+  try {
+    /** :follow : "following" | "followee" */
+    const { user_id, follow } = req.params;
+
+    const exUser = await User.findOne({
+      where: { user_id },
+    });
+    if (!exUser) {
+      return res.status(404).json({
+        message: "존재하지 않는 사용자입니다.",
+      });
+    }
+
+    let followType;
+    if (follow === "following") {
+      followType = "FollowingId";
+    } else if (follow === "followee") {
+      followType = "FolloweeId";
+    } else {
+      return res.status(400).json({
+        message: "잘못된 요청입니다.",
+      });
+    }
+
+    const sql = `SELECT COUNT(*) AS count FROM Follow WHERE ${followType} = :id`;
+
+    const result = await sequelize.query(sql, {
+      replacements: {
+        id: exUser.id,
+      },
+      type: sequelize.QueryTypes.SELECT,
+    });
+    console.log(result);
+    return res.status(200).json(result[0].count);
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get("/user/:user_id/followee", async (req, res, next) => {
+  try {
+    const { user_id } = req.params;
+    const { page } = req.query;
+
+    const exUser = await User.findOne({
+      where: { user_id },
+    });
+    if (!exUser) {
+      return res.status(404).json({
+        message: "존재하지 않는 사용자입니다.",
+      });
+    }
+
+    const sql = `
+      SELECT U.id, U.user_id, U.name, U.profile_image, U.introduction
+      FROM template.Follow AS F
+        JOIN template.users AS U ON F.FollowingId = U.id
+      WHERE F.FolloweeId = :id
+      LIMIT :limit, :offset
+    `;
+    const result = await sequelize.query(sql, {
+      replacements: {
+        id: exUser.id,
+        limit: (page - 1) * 10,
+        offset: 10,
+      },
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    return res.status(200).json(result);
+  } catch (e) {
+    next(e);
+  }
+});
+
 // 팔로우 목록 을 조회, 페이지 네이션
 router.get("/user/:user_id/following", async (req, res, next) => {
   try {
@@ -95,14 +172,19 @@ router.get("/user/:user_id/following", async (req, res, next) => {
     }
 
     const sql = `
-    SELECT template.users.id, template.users.user_id, template.users.name, template.users.profile_image, template.users.introduction
-    FROM template.Follow
-    JOIN template.users ON template.Follow.FolloweeId = template.users.id
-    WHERE FollowingId = ${exUser.id}
-    LIMIT ${(page - 1) * 10}, 10
-  `;
+      SELECT U.id, U.user_id, U.name, U.profile_image, U.introduction
+      FROM template.Follow AS F
+      JOIN template.users AS U ON F.FolloweeId = U.id
+      WHERE FollowingId = :id
+      LIMIT :limit, :offset
+    `;
 
     const result = await sequelize.query(sql, {
+      replacements: {
+        id: exUser.id,
+        limit: (page - 1) * 10,
+        offset: 10,
+      },
       type: sequelize.QueryTypes.SELECT,
     });
 
