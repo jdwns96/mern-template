@@ -21,6 +21,31 @@ export default function FolloweePage() {
   const { isLoading: isFolloweeCountLoading, data: followingCountData } = useUserFolloweeCountQuery(url_user_id);
   const { isLoading: isFolloweesLoading, data: followingsData } = useUserFolloweesQuery(url_user_id, pageParam ?? "1");
 
+  const onClickPageIcon = (type: 1 | 2 | 3 | 4) => () => {
+    if (followingCountData === undefined) return null;
+
+    switch (type) {
+      case 1:
+        setSearchParams({ page: "1" });
+        break;
+      case 2:
+        if (pageParam !== null && Number(pageParam) > 1) {
+          setSearchParams({ page: String(Number(pageParam) - 1) });
+        }
+        break;
+      case 3:
+        if (Number(pageParam) < Math.ceil(followingCountData / 10)) {
+          setSearchParams({ page: String(Number(pageParam) + 1) });
+        }
+        break;
+      case 4:
+        if (followingCountData !== 0) {
+          setSearchParams({ page: String(Math.ceil(followingCountData / 10)) });
+        }
+        break;
+    }
+  };
+
   return (
     <AppTemplate>
       <div className="w-full h-full">
@@ -76,12 +101,12 @@ export default function FolloweePage() {
             <article className="bg-white shadow-md rounded-md  w-full flex justify-center">
               <ul className="flex  p-2">
                 <li>
-                  <button className="w-8 h-8">
+                  <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
                     <KeyboardDoubleArrowLeft />
                   </button>
                 </li>
                 <li>
-                  <button className="w-8 h-8">
+                  <button className="w-8 h-8" onClick={onClickPageIcon(2)}>
                     <KeyboardArrowLeft />
                   </button>
                 </li>
@@ -94,12 +119,12 @@ export default function FolloweePage() {
                 ))}
 
                 <li>
-                  <button className="w-8 h-8">
+                  <button className="w-8 h-8" onClick={onClickPageIcon(3)}>
                     <KeyboardArrowRight />
                   </button>
                 </li>
                 <li>
-                  <button className="w-8 h-8">
+                  <button className="w-8 h-8" onClick={onClickPageIcon(4)}>
                     <KeyboardDoubleArrowRight />
                   </button>
                 </li>
