@@ -22,7 +22,7 @@ export default function FollowingPage() {
   const pageParam = searchParams.get("page");
 
   const { isLoading: isFollowingCountLoading, data: followingCountData } = useUserFollowingCountQuery(url_user_id);
-  const { isLoading: isFollowingsLoading, data: followingsData } = useUserFollowingsQuery(url_user_id, pageParam ?? "1");
+  const { isLoading: isFollowingsLoading, data: followingsData } = useUserFollowingsQuery(url_user_id, pageParam ?? "1"); // 쿼리 스트링이 없으면 1 보낸다.
 
   const onClickPageIcon = (type: 1 | 2 | 3 | 4) => () => {
     if (followingCountData === undefined) return null;
@@ -54,8 +54,10 @@ export default function FollowingPage() {
       <div className="w-full h-full">
         <div className="max-w-4xl mx-auto mt-6 px-4">
           <article className="bg-white shadow-md rounded-md mb-2">
-            <header className="border-b border-solid border-gray-300">
-              <h1>{url_user_id}</h1>
+            <header className="border-b border-solid border-gray-300 p-4">
+              <h1 className="text-xl">
+                <span className="font-semibold">{url_user_id}</span> 님의 팔로우 목록
+              </h1>
             </header>
             <nav className="flex">
               <div>
@@ -99,7 +101,7 @@ export default function FollowingPage() {
           {isFollowingCountLoading ? (
             <div> skeleton </div>
           ) : (
-            <article className="bg-white shadow-md rounded-md  w-full flex justify-center">
+            <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4">
               <ul className="flex  p-2">
                 <li>
                   <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
