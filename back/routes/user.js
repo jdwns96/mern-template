@@ -194,4 +194,6 @@ router.get("/user/:user_id/following", async (req, res, next) => {
   }
 });
 
+// 팔로잉 신청
+
 module.exports = router;

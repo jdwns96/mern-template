@@ -35,7 +35,7 @@ export default function FolloweePage() {
         break;
       case 3:
         if (Number(pageParam) < Math.ceil(followingCountData / 10)) {
-          setSearchParams({ page: String(Number(pageParam) + 1) });
+          setSearchParams({ page: String(Number(pageParam ?? 1) + 1) });
         }
         break;
       case 4:
@@ -51,8 +51,10 @@ export default function FolloweePage() {
       <div className="w-full h-full">
         <div className="max-w-4xl mx-auto mt-6 px-4">
           <article className="bg-white shadow-md rounded-md mb-2">
-            <header className="border-b border-solid border-gray-300">
-              <h1>{url_user_id}</h1>
+            <header className="border-b border-solid border-gray-300 p-4">
+              <h1 className="text-xl">
+                <span className="font-semibold">{url_user_id}</span> 님의 팔로워 목록
+              </h1>
             </header>
             <nav className="flex">
               <div>
@@ -98,7 +100,7 @@ export default function FolloweePage() {
           {isFolloweeCountLoading ? (
             <div> skeleton </div>
           ) : (
-            <article className="bg-white shadow-md rounded-md  w-full flex justify-center">
+            <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4">
               <ul className="flex  p-2">
                 <li>
                   <button className="w-8 h-8" onClick={onClickPageIcon(1)}>

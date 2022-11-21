@@ -21,8 +21,11 @@ export default function FollowingPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = searchParams.get("page");
 
-  const { isLoading: isFollowingCountLoading, data: followingCountData } = useUserFollowingCountQuery(url_user_id);
+  const { isLoading: isFollowingCountLoading, data: followingCountData } = useUserFollowingCountQuery(url_user_id); // 팔로우 전체 목록
   const { isLoading: isFollowingsLoading, data: followingsData } = useUserFollowingsQuery(url_user_id, pageParam ?? "1"); // 쿼리 스트링이 없으면 1 보낸다.
+
+  const onFollow = () => {};
+  const onUnFollow = () => {};
 
   const onClickPageIcon = (type: 1 | 2 | 3 | 4) => () => {
     if (followingCountData === undefined) return null;
@@ -38,7 +41,7 @@ export default function FollowingPage() {
         break;
       case 3:
         if (Number(pageParam) < Math.ceil(followingCountData / 10)) {
-          setSearchParams({ page: String(Number(pageParam) + 1) });
+          setSearchParams({ page: String(Number(pageParam ?? 1) + 1) });
         }
         break;
       case 4:
