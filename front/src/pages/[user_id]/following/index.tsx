@@ -9,7 +9,7 @@ import cn from "classnames";
 
 // utils
 import paginationUtil from "src/utils/pagination-util";
-import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight } from "@mui/icons-material";
+import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, Search } from "@mui/icons-material";
 import { useAppSelector } from "src/store";
 
 export default function FollowingPage() {
@@ -65,13 +65,30 @@ export default function FollowingPage() {
             <nav className="flex">
               <div>
                 <Link to="../followee" relative="path">
-                  <button className="snack-btn py-4">팔로워</button>
+                  <button className="snack-btn py-2">팔로워</button>
                 </Link>
               </div>
               <div>
                 <Link to="">
-                  <button className="snack-btn py-4 bg-snack-sky">팔로우</button>
+                  <button className="snack-btn py-2 bg-snack-sky">팔로우</button>
                 </Link>
+              </div>
+            </nav>
+            <nav className="flex justify-between border-b border-solid border-gray-300 p-4">
+              <div>
+                <select name="snack-input" id="">
+                  <option value="0">최신순</option>
+                  <option value="1">오름차순</option>
+                  <option value="2">내림차순</option>
+                </select>
+              </div>
+              <div className="">
+                <label htmlFor="search" className="relative snack-input px-6">
+                  <span className=" absolute left-0">
+                    <Search />
+                  </span>
+                  <input className="w-full h-full" type="text" id="search" placeholder="아이디 검색" />
+                </label>
               </div>
             </nav>
             <main>

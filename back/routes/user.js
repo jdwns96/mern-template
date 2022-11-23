@@ -1,7 +1,7 @@
 const express = require("express");
 const { sequelize } = require("../models");
 const { User } = require("../models");
-const auth = require("../middleware/auth-middleware");
+const authMiddleware = require("../middleware/auth-middleware");
 
 const router = express.Router();
 
@@ -46,38 +46,42 @@ router.get("/user/:user_id", async (req, res, next) => {
 
 // 유저 팔로우 상태 확인
 // @TODO 코드 수정
-router.get("/user/:user_id/follow-check", auth, async (req, res, next) => {
-  try {
-    const { user_id: other_user_id } = req.params;
-    const { id, user_id, name } = req.user;
+router.get(
+  "/user/:user_id/follow-check",
+  authMiddleware,
+  async (req, res, next) => {
+    try {
+      const { user_id: other_user_id } = req.params;
+      const { id, user_id, name } = req.user;
 
-    const exUser = await User.findOne({
-      where: { user_id: other_user_id },
-    });
-    if (!exUser) {
-      return res.status(404).json({
-        message: "존재하지 않는 사용자입니다.",
+      const exUser = await User.findOne({
+        where: { user_id: other_user_id },
       });
-    }
+      if (!exUser) {
+        return res.status(404).json({
+          message: "존재하지 않는 사용자입니다.",
+        });
+      }
 
-    const follow_check_query = await sequelize.query(
-      `SELECT * FROM template.Follow WHERE FollowingId = ${id} AND FolloweeId = ${exUser.id}`
-    );
-    const follow_check = follow_check_query[0].length > 0 ? true : false;
+      const follow_check_query = await sequelize.query(
+        `SELECT * FROM template.Follow WHERE FollowingId = ${id} AND FolloweeId = ${exUser.id}`
+      );
+      const follow_check = follow_check_query[0].length > 0 ? true : false;
 
-    if (!follow_check) {
+      if (!follow_check) {
+        return res.status(200).json({
+          isFollowing: false,
+        });
+      }
+
       return res.status(200).json({
-        isFollowing: false,
+        isFollowing: true,
       });
+    } catch (e) {
+      next(e);
     }
-
-    return res.status(200).json({
-      isFollowing: true,
-    });
-  } catch (e) {
-    next(e);
   }
-});
+);
 
 // 페이지네이션 토탈 카운트
 router.get("/user/:user_id/:follow/count", async (req, res, next) => {
@@ -194,6 +198,59 @@ router.get("/user/:user_id/following", async (req, res, next) => {
   }
 });
 
-// 팔로잉 신청
+// 팔로우 신청
+// prettier-ignore
+router.patch("/user/:user_id/follow", authMiddleware , async (req, res, next) => {
+  try{
+    const { id, user_id , name } = req.user; // 로그인한 유저
+    const { user_id: other_user_id } = req.params; // 팔로우 할 유저
+
+    const exUser = await User.findOne({
+      where: { user_id: other_user_id },
+    });
+    if(exUser){
+      return res.status(404).json({
+        message: "존재하지 않는 사용자입니다.",
+      });
+    }
+
+    exUser.addFollowing(id);
+
+    return res.status(200).json({
+      message: "팔로우 성공",
+    });
+
+  }catch(e){
+    next(e);
+  }
+});
+
+// 언팔로우
+// prettier-ignore
+router.delete("/user/:user_id/follow", authMiddleware, async (req, res, next) => {
+  try{
+    const { id, user_id , name } = req.user; // 로그인한 유저
+    const { user_id: other_user_id } = req.params; // 팔로우 할 유저
+
+    const exUser = await User.findOne({
+      where: { user_id: other_user_id },
+    });
+    if(exUser){
+      return res.status(404).json({
+        message: "존재하지 않는 사용자입니다.",
+      });
+    }
+
+    // @언팔로우
+    exUser.removeFollowing(id);
+
+    return res.status(200).json({
+      message: "언팔로우 성공",
+    })
+    
+  }catch(e){
+    next(e);
+  }
+})
 
 module.exports = router;

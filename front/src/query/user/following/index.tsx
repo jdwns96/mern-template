@@ -14,6 +14,10 @@ export const userFollowingCountAPI = async (user_id: string | undefined) => clie
 // 팔로우 목록
 export const userFollowingsAPI = (user_id: string | undefined, page: string | null) => client.get<UserFollowingsResponse[]>(`/user/${user_id}/following?page=${page}`).then((res) => res.data);
 
+// 팔로우 & 언팔로우
+export const userFollowing = () => client.get(``).then((res) => res.data);
+export const userUnFollowing = () => client.get(``).then((res) => res.data);
+
 export const useUserFollowingCountQuery = (user_id: string | undefined) => {
   return useQuery(["following", user_id], () => userFollowingCountAPI(user_id));
 };
