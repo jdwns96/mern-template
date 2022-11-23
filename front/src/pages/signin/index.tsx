@@ -161,6 +161,7 @@ export default function SigninPage() {
                           type="submit"
                           className={cn(
                             "bg-transparent  text-snack-sky font-semibold  py-3 px-4 border border-snack-sky  rounded flex  justify-center w-full",
+                            "dark:border-snack-bronze dark:text-snack-bronze",
                             false && "opacity-50 cursor-not-allowed hover:text-snack-sky hover:border-snack-sky",
                           )}
                         >

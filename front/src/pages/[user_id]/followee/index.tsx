@@ -18,11 +18,11 @@ export default function FolloweePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = searchParams.get("page");
 
-  const { isLoading: isFolloweeCountLoading, data: followingCountData } = useUserFolloweeCountQuery(url_user_id);
-  const { isLoading: isFolloweesLoading, data: followingsData } = useUserFolloweesQuery(url_user_id, pageParam ?? "1");
+  const { isLoading: isFolloweeCountLoading, data: followeeCountData } = useUserFolloweeCountQuery(url_user_id);
+  const { isLoading: isFolloweesLoading, data: followeesData } = useUserFolloweesQuery(url_user_id, pageParam ?? "1");
 
   const onClickPageIcon = (type: 1 | 2 | 3 | 4) => () => {
-    if (followingCountData === undefined) return null;
+    if (followeeCountData === undefined) return null;
 
     switch (type) {
       case 1:
@@ -34,13 +34,13 @@ export default function FolloweePage() {
         }
         break;
       case 3:
-        if (Number(pageParam) < Math.ceil(followingCountData / 10)) {
+        if (Number(pageParam) < Math.ceil(followeeCountData / 10)) {
           setSearchParams({ page: String(Number(pageParam ?? 1) + 1) });
         }
         break;
       case 4:
-        if (followingCountData !== 0) {
-          setSearchParams({ page: String(Math.ceil(followingCountData / 10)) });
+        if (followeeCountData !== 0) {
+          setSearchParams({ page: String(Math.ceil(followeeCountData / 10)) });
         }
         break;
     }
@@ -73,7 +73,7 @@ export default function FolloweePage() {
                 {isFolloweesLoading ? (
                   <div> skeleton </div>
                 ) : (
-                  followingsData?.map((v, i) => (
+                  followeesData?.map((v, i) => (
                     <div className="flex w-full justify-between border-b border-solid border-gray-300 pb-2 mb-4" key={v.id}>
                       <div className="flex ">
                         <div>
@@ -102,30 +102,38 @@ export default function FolloweePage() {
           ) : (
             <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4">
               <ul className="flex  p-2">
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
                     <KeyboardDoubleArrowLeft />
                   </button>
                 </li>
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(2)}>
                     <KeyboardArrowLeft />
                   </button>
                 </li>
-                {paginationUtil(followingCountData ?? 0, pageParam === null ? 1 : Number(pageParam), 5).map((v, i) => (
+                {paginationUtil(followeeCountData ?? 0, pageParam === null ? 1 : Number(pageParam), 5).map((v, i) => (
                   <Link key={v} to={`?page=${v}`}>
-                    <li>
-                      <button className={cn("w-8 h-8", v === Number(pageParam) && "bg-snack-sky", v === 1 && pageParam === null && "bg-snack-sky")}>{v}</button>
+                    <li className="mx-0.5">
+                      <button
+                        className={cn(
+                          "w-8 h-8 rounded-md hover:bg-gray-100 ",
+                          v === Number(pageParam) && "border border-solid border-snack-sky text-snack-sky",
+                          v === 1 && pageParam === null && "border border-solid border-snack-sky text-snack-sky",
+                        )}
+                      >
+                        {v}
+                      </button>
                     </li>
                   </Link>
                 ))}
 
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(3)}>
                     <KeyboardArrowRight />
                   </button>
                 </li>
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(4)}>
                     <KeyboardDoubleArrowRight />
                   </button>

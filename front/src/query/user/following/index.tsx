@@ -15,8 +15,8 @@ export const userFollowingCountAPI = async (user_id: string | undefined) => clie
 export const userFollowingsAPI = (user_id: string | undefined, page: string | null) => client.get<UserFollowingsResponse[]>(`/user/${user_id}/following?page=${page}`).then((res) => res.data);
 
 // 팔로우 & 언팔로우
-export const userFollowing = () => client.get(``).then((res) => res.data);
-export const userUnFollowing = () => client.get(``).then((res) => res.data);
+export const userFollowing = (user_id: string) => client.patch(`/user/:user_id/follow`).then((res) => res.data);
+export const userUnFollowing = (user_id: string) => client.delete(`/user/:user_id/follow`).then((res) => res.data);
 
 export const useUserFollowingCountQuery = (user_id: string | undefined) => {
   return useQuery(["following", user_id], () => userFollowingCountAPI(user_id));
@@ -25,5 +25,22 @@ export const useUserFollowingCountQuery = (user_id: string | undefined) => {
 export const useUserFollowingsQuery = (user_id: string | undefined, page: string | null) => {
   return useQuery(["following", user_id, page], () => userFollowingsAPI(user_id, page), {
     enabled: !!user_id,
+  });
+};
+
+export const useUserFollowingMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation(userFollowing, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["following"]);
+    },
+  });
+};
+export const useUserUnFollowingMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation(userUnFollowing, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["following"]);
+    },
   });
 };

@@ -57,8 +57,8 @@ export default function FollowingPage() {
       <div className="w-full h-full">
         <div className="max-w-4xl mx-auto mt-6 px-4">
           <article className="bg-white shadow-md rounded-md mb-2">
-            <header className="border-b border-solid border-gray-300 p-4">
-              <h1 className="text-xl">
+            <header className="choco-border-b p-4">
+              <h1 className="text-xl text-black">
                 <span className="font-semibold">{url_user_id}</span> 님의 팔로우 목록
               </h1>
             </header>
@@ -74,21 +74,23 @@ export default function FollowingPage() {
                 </Link>
               </div>
             </nav>
-            <nav className="flex justify-between border-b border-solid border-gray-300 p-4">
+            <nav className="flex justify-between choco-border-b p-4">
               <div>
-                <select name="snack-input" id="">
-                  <option value="0">최신순</option>
-                  <option value="1">오름차순</option>
-                  <option value="2">내림차순</option>
+                <select id="countries" className="choco-input">
+                  <option value="US">최신순</option>
+                  <option value="CA">오름차순</option>
+                  <option value="FR">내림차순</option>
                 </select>
               </div>
               <div className="">
-                <label htmlFor="search" className="relative snack-input px-6">
-                  <span className=" absolute left-0">
-                    <Search />
-                  </span>
-                  <input className="w-full h-full" type="text" id="search" placeholder="아이디 검색" />
-                </label>
+                <div className="relative w-full">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <input type="text" id="simple-search" className="choco-input pl-10" placeholder="Search" required />
+                </div>
               </div>
             </nav>
             <main>
@@ -123,30 +125,38 @@ export default function FollowingPage() {
           ) : (
             <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4">
               <ul className="flex  p-2">
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
                     <KeyboardDoubleArrowLeft />
                   </button>
                 </li>
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(2)}>
                     <KeyboardArrowLeft />
                   </button>
                 </li>
                 {paginationUtil(followingCountData ?? 0, pageParam === null ? 1 : Number(pageParam), 5).map((v, i) => (
                   <Link key={v} to={`?page=${v}`}>
-                    <li>
-                      <button className={cn("w-8 h-8", v === Number(pageParam) && "bg-snack-sky", v === 1 && pageParam === null && "bg-snack-sky")}>{v}</button>
+                    <li className="mx-0.5">
+                      <button
+                        className={cn(
+                          "w-8 h-8 rounded-md hover:bg-gray-100 ",
+                          v === Number(pageParam) && "border border-solid border-snack-sky text-snack-sky",
+                          v === 1 && pageParam === null && "border border-solid border-snack-sky text-snack-sky",
+                        )}
+                      >
+                        {v}
+                      </button>
                     </li>
                   </Link>
                 ))}
 
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(3)}>
                     <KeyboardArrowRight />
                   </button>
                 </li>
-                <li>
+                <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(4)}>
                     <KeyboardDoubleArrowRight />
                   </button>

@@ -5,6 +5,8 @@ import AppSpin from "src/components/common/load/AppSpin";
 import client from "src/libs/axios";
 import { useAppDispatch, useAppSelector } from "src/store";
 import { setAuth } from "src/store/auth";
+
+import toast, { Toaster } from "react-hot-toast";
 // pages
 import { routes } from "./routes";
 
@@ -14,6 +16,10 @@ export default function App() {
   const dispatch = useAppDispatch();
   const { id, user_id, name } = useAppSelector((store) => store.auth);
 
+  // UI check (light or dark)
+  useEffect(() => {}, []);
+
+  // login check
   const [initial, setInitial] = useState<boolean>(false);
   useEffect(() => {
     const authentication = async () => {
@@ -59,6 +65,7 @@ export default function App() {
           <Route key={key} path={path} element={<Component />} />
         ))}
       </Routes>
+      <Toaster position="bottom-center" />
     </>
   );
 }

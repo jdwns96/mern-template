@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @layer components {
+  .choco-border {
+    @apply border border-solid border-choco-gray-100;
+  }
+  .choco-border-b {
+    @apply border-b border-solid border-choco-gray-100;
+  }
+
+  .choco-input {
+    @apply bg-gray-50 border border-choco-gray-200 text-choco-text-light text-sm rounded-lg focus:border-choco-gray-300 block w-full p-1.5 outline-none dark:text-choco-text-dark dark:bg-[#2D2D2D];
+  }
+  .choco-btn {
+    @apply bg-gray-50 border border-choco-gray-200 text-choco-text-light text-sm rounded-lg focus:border-choco-gray-300 block w-full p-1.5 outline-none dark:text-choco-text-dark dark:bg-[#2D2D2D];
+  }
+
   .snack-section {
     @apply mx-[-0.5rem] flex justify-center;
   }
@@ -76,6 +90,13 @@
     @apply before:content-[''] before:bg-gray-300 before:absolute before:top-0 before:bottom-0 before:left-0 before:h-5 before:w-[1px] before:translate-y-1/2;
   }
 }
+
+/* html {
+  color: hsl(210, 8%, 25%);
+}
+html.dark {
+  color: hsl(210, 8%, 82.5%);
+} */
 
 body {
   background-color: #f3f2ef;
