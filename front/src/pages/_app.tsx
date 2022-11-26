@@ -59,7 +59,7 @@ export default function App() {
   if (!initial) return <AppSpin />;
 
   return (
-    <div className="text-choco-text dark:text-choco-text-dark">
+    <div className="text-choco-text dark:text-choco-text-dark dark:bg-[#2D2D2D]">
       <Routes location={location} key={location.pathname}>
         {routes.map(({ key, path, Component }) => (
           <Route key={key} path={path} element={<Component />} />

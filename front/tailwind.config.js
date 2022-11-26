@@ -13,6 +13,8 @@ module.exports = {
         "snack-sky": "#1f8ce6",
         "snack-pink": "#FF69b4",
 
+        "choco-sky": "#1f8ce6",
+
         "choco-green-100": "#5a9e70",
         "choco-green-200": "#344b3c",
 

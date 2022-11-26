@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { removeAuth } from "src/store/auth";
 import client from "src/libs/axios";
 
-const HEADER = { backgroundColor: "#1f8ce6", boxShadow: "none" };
-// const HEADER = { backgroundColor: "#FFFFFF", boxShadow: "none" };
+import Choco from "src/assets/svg/ChocolatLait";
+
+const HEADER = { backgroundColor: "inherit", boxShadow: "none" };
 
 export default function AppHeader() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
@@ -36,7 +37,7 @@ export default function AppHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-snack-sky z-10 px-0 shadow-md">
+    <header className="fixed top-0 left-0 right-0 bg-[#F8F9F9] z-10 px-0 shadow-md border-solid border-b-4 border-choco-bronze-100 dark:bg-[hsl(0,0%,22.5%)]">
       <AppBar position="static" sx={HEADER} className="max-w-3xl mx-auto">
         <Toolbar variant="dense" className="flex justify-between" sx={{ padding: 0 }}>
           <div
@@ -46,37 +47,39 @@ export default function AppHeader() {
             }}
           >
             <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-              <EggAlt />
+              {/* chocolate svg */}
+              <Choco />
+              {/* <EggAlt style={{ color: "hsl(28,31%,52%)" }} /> */}
             </IconButton>
             <Typography variant="h6" color="inherit" component="div" className="flex items-center">
-              SNACK
+              <span className="text-choco-bronze-200">CHOCO</span>
             </Typography>
           </div>
           <ul className="flex items-center h-12">
             <li
-              className="relative p-2 px-3 cursor-pointer hover: transition-all snack-after-bar hidden md:block"
+              className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block"
               onClick={() => {
                 navigate("/");
               }}
             >
-              <Home />
+              <Home style={{ color: "hsl(28,31%,52%)" }} />
             </li>
-            <li className="relative p-2 px-3 cursor-pointer hover: transition-all snack-after-bar hidden md:block">
-              <Search />
+            <li className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block">
+              <Search style={{ color: "hsl(28,31%,52%)" }} />
             </li>
-            <li className="relative p-2 px-3 cursor-pointer hover: transition-all snack-after-bar hidden md:block">
-              <Telegram />
+            <li className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block">
+              <Telegram style={{ color: "hsl(28,31%,52%)" }} />
             </li>
             <li className="relative transition-all" ref={accountMenu}>
               <div
-                className="cursor-pointer hover: p-3  "
+                className="cursor-pointer p-2 px-1.5 "
                 onClick={() => {
                   setAccountToggle((p) => !p);
                 }}
               >
                 {/* <span>{user_id}</span> */}
                 <div className="">
-                  <div className="w-6 h-6 rounded-full  border border-solid border-white bg-white"></div>
+                  <div className="w-6 h-6 rounded-full  border border-solid edge-border"></div>
                 </div>
               </div>
               <article

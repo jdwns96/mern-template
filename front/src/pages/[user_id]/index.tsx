@@ -37,7 +37,7 @@ export default function DynamicUserIdPage() {
     <AppTemplate>
       <div className="w-full h-full">
         <div className="max-w-3xl mx-auto mt-6 px-4">
-          <article className="bg-white shadow-md rounded-md mb-2">
+          <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
             <div className="relative ">
               {/* background */}
               <div className="bg-gray-500 rounded-t-md">
@@ -66,20 +66,20 @@ export default function DynamicUserIdPage() {
                   <div className="flex">
                     {id === userData?.id ? (
                       <>
-                        <button className="snack-btn">정보 관리</button>
+                        <button className="choco-btn">정보 관리</button>
                       </>
                     ) : (
                       <>
                         <div>
-                          <button className="snack-btn">메세지</button>
+                          <button className="choco-btn">메세지</button>
                         </div>
                         <div>
                           {isUserFollowingCheckError || !userFollowingCheckData?.isFollowing ? (
-                            <button className="snack-btn" onClick={onFollow}>
+                            <button className="choco-btn" onClick={onFollow}>
                               팔로우
                             </button>
                           ) : (
-                            <button className="snack-btn bg-snack-blue hover:bg-snack-blue border-snack-blue text-white" onClick={onUnfollowClick}>
+                            <button className="choco-btn bg-choco-blue hover:bg-choco-blue border-choco-blue text-white" onClick={onUnfollowClick}>
                               언팔로우
                             </button>
                           )}
@@ -98,7 +98,7 @@ export default function DynamicUserIdPage() {
               </div>
             </main>
           </article>
-          <article className="bg-white shadow-md rounded-md mb-2">
+          <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
             <div className="py-4">
               <div className="flex px-6">
                 <div className="w-full">
@@ -127,7 +127,7 @@ export default function DynamicUserIdPage() {
             </div>
           </article>
           {/* <article className="bg-white shadow-md rounded-md mb-2">글쓰기</article> */}
-          <article className="bg-white shadow-md rounded-md mb-2">
+          <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
             <header className="px-6 py-4 flex">
               <h1 className="text-lg font-semibold">
                 <span>스낵</span>

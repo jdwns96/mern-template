@@ -87,10 +87,10 @@
   }
 
   .snack-after-bar {
-    @apply after:content-[''] after:bg-gray-300 after:absolute after:top-0 after:bottom-0 after:right-0 after:h-[22px] after:w-[1px] after:translate-y-1/2;
+    @apply after:content-[''] after:bg-choco-gray-100 after:absolute after:top-0 after:bottom-0 after:right-0 after:h-[22px] after:w-[1px] after:translate-y-1/2;
   }
   .snack-before-bar {
-    @apply before:content-[''] before:bg-gray-300 before:absolute before:top-0 before:bottom-0 before:left-0 before:h-5 before:w-[1px] before:translate-y-1/2;
+    @apply before:content-[''] before:bg-choco-gray-100 before:absolute before:top-0 before:bottom-0 before:left-0 before:h-5 before:w-[1px] before:translate-y-1/2;
   }
 }
 

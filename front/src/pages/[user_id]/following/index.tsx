@@ -56,11 +56,23 @@ export default function FollowingPage() {
     <AppTemplate>
       <div className="w-full h-full">
         <div className="max-w-4xl mx-auto mt-6 px-4">
-          <article className="bg-white shadow-md rounded-md mb-2">
-            <header className="p-4">
+          <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
+            <header className="p-4 flex justify-between">
               <h1 className="text-xl ">
                 <span className="font-semibold">{url_user_id}</span> 님의 팔로우 목록
               </h1>
+              <div className="flex ">
+                <button className="choco-btn text-sm rounded-r-none px-2 whitespace-nowrap">
+                  <Link to="../followee" relative="path" className="grow">
+                    팔로워
+                  </Link>
+                </button>
+                <button className="choco-btn choco-btn--selected text-sm rounded-l-none px-2 -ml-1 whitespace-nowrap">
+                  <Link to="./" className="grow">
+                    팔로우
+                  </Link>
+                </button>
+              </div>
             </header>
             {/* <nav className="flex">
               <div>
@@ -70,25 +82,13 @@ export default function FollowingPage() {
               </div>
               <div>
                 <Link to="">
-                  <button className="choco-btn py-2 bg-choco-sky">팔로우</button>
+                  <button className="choco-btn py-2 bg-choco-bronze-200">팔로우</button>
                 </Link>
               </div>
             </nav> */}
             <nav className="flex justify-between choco-border-b pb-3 px-4">
               <div className="flex">
-                <div className="flex grow">
-                  <button className="choco-btn text-sm rounded-r-none px-2">
-                    <Link to="../followee" relative="path" className="grow">
-                      팔로워
-                    </Link>
-                  </button>
-                  <button className="choco-btn choco-btn--selected text-sm rounded-l-none px-2 -ml-1">
-                    <Link to="./" className="grow">
-                      팔로우
-                    </Link>
-                  </button>
-                </div>
-                <div className="grow ml-2">
+                <div className="grow ">
                   <select id="countries" className="choco-input">
                     <option value="0">최신순</option>
                     <option value="1">오름차순</option>
@@ -108,26 +108,26 @@ export default function FollowingPage() {
               </div>
             </nav>
             <main>
-              <div className="p-4">
+              <div className="">
                 {isFollowingsLoading ? (
                   <div> skeleton </div>
                 ) : (
                   followingsData?.map((v, i) => (
-                    <div className="flex w-full justify-between border-b border-solid border-gray-300 pb-2 mb-4" key={v.id}>
+                    <div className="flex w-full justify-between border-b border-solid border-gray-300  p-4" key={v.id}>
                       <div className="flex ">
                         <div>
                           <Link to={`/${v.user_id}`}>
                             <div className="rounded-full w-16 h-16 bg-gray-300"></div>
                           </Link>
                         </div>
-                        <div className="ml-2">
+                        <div className="ml-6">
                           <p>
                             <Link to={`/${v.user_id}`}>{v.name}</Link>
                           </p>
                           <p>{v.introduction ?? "-"}</p>
                         </div>
                       </div>
-                      <div>{id ? <button className="choco-btn">언팔로우</button> : <button className="choco-btn">팔로우</button>}</div>
+                      <div className="flex items-center">{id ? <button className="choco-btn">언팔로우</button> : <button className="choco-btn">팔로우</button>}</div>
                     </div>
                   ))
                 )}
@@ -137,7 +137,7 @@ export default function FollowingPage() {
           {isFollowingCountLoading ? (
             <div> skeleton </div>
           ) : (
-            <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4">
+            <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4 dark:bg-[#3D3D3D]">
               <ul className="flex  p-2">
                 <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
@@ -155,8 +155,8 @@ export default function FollowingPage() {
                       <button
                         className={cn(
                           "w-8 h-8 rounded-md hover:bg-gray-100 ",
-                          v === Number(pageParam) && "border border-solid border-choco-sky text-choco-sky",
-                          v === 1 && pageParam === null && "border border-solid border-choco-sky text-choco-sky",
+                          v === Number(pageParam) && "border border-solid border-choco-bronze-200 text-choco-bronze-200",
+                          v === 1 && pageParam === null && "border border-solid border-choco-bronze-200 text-choco-bronze-200",
                         )}
                       >
                         {v}

@@ -88,10 +88,10 @@ export default function SigninPage() {
             <div className="mb-0 lg:mb-0">
               <div className="py-0 ">
                 <div className=" flex items-center">
-                  <p className="text-snack-sky">
+                  <p className="text-choco-bronze-200">
                     <EggAlt style={{ width: 48, height: 48 }} />
                   </p>
-                  <p className="font-extrabold ml-2 text-3xl text-snack-sky">SNACK</p>
+                  <p className="font-extrabold ml-2 text-3xl text-choco-bronze-200">CHOCO</p>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function SigninPage() {
                       <div className="flex mb-8 flex-wrap">
                         <p className="text-[12px] mr-2">아이디 혹은 패스워드를 잊어버리셨나요?</p>
                         <p
-                          className="text-[12px] cursor-pointer text-snack-sky "
+                          className="text-[12px] cursor-pointer text-choco-sky "
                           onClick={() => {
                             // navigate("/join");
                           }}
@@ -160,7 +160,7 @@ export default function SigninPage() {
                         <button
                           type="submit"
                           className={cn(
-                            "bg-transparent  text-snack-sky font-semibold  py-3 px-4 border border-snack-sky  rounded flex  justify-center w-full",
+                            "bg-transparent  text-choco-bronze-200 font-semibold  py-3 px-4 border border-choco-bronze-200 rounded flex  justify-center w-full",
                             "dark:border-snack-bronze dark:text-snack-bronze",
                             false && "opacity-50 cursor-not-allowed hover:text-snack-sky hover:border-snack-sky",
                           )}
@@ -173,7 +173,7 @@ export default function SigninPage() {
                           type="button"
                           className={cn(
                             "cursor-not-allowed",
-                            " bg-snack-sky text-white font-semibold  py-3 px-4 border border-snack-sky  rounded flex  justify-center w-full",
+                            " bg-choco-bronze-200 text-white font-semibold  py-3 px-4 border border-choco-bronze-200  rounded flex  justify-center w-full",
                             false && "opacity-50 cursor-not-allowed hover:text-snack-sky hover:border-snack-sky",
                           )}
                         >
