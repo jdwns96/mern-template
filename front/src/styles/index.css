@@ -11,10 +11,13 @@
   }
 
   .choco-input {
-    @apply bg-gray-50 border border-choco-gray-200 text-choco-text-light text-sm rounded-lg focus:border-choco-gray-300 block w-full p-1.5 outline-none dark:text-choco-text-dark dark:bg-[#2D2D2D];
+    @apply bg-gray-50 border border-choco-gray-200 text-choco-text text-sm rounded-lg focus:border-choco-gray-300 block w-full p-1.5  outline-none dark:text-choco-text-dark dark:bg-[#2D2D2D];
   }
   .choco-btn {
-    @apply bg-gray-50 border border-choco-gray-200 text-choco-text-light text-sm rounded-lg focus:border-choco-gray-300 block w-full p-1.5 outline-none dark:text-choco-text-dark dark:bg-[#2D2D2D];
+    @apply bg-gray-50 border border-choco-gray-200 text-choco-text text-sm rounded-lg focus:border-choco-gray-300 block w-full p-1.5 px-2.5  outline-none dark:text-choco-text-dark dark:bg-[#2D2D2D] dark:hover:text-[#CFD2D6] dark:hover:bg-[#404245];
+  }
+  .choco-btn--selected {
+    @apply bg-[#E3E6E8] hover:bg-[#E3E6E8]  dark:bg-choco-gold-300 dark:border-choco-gold-100 dark:text-choco-gold-200 hover:dark:bg-choco-gold-300 hover:dark:text-choco-gold-200;
   }
 
   .snack-section {
@@ -90,13 +93,6 @@
     @apply before:content-[''] before:bg-gray-300 before:absolute before:top-0 before:bottom-0 before:left-0 before:h-5 before:w-[1px] before:translate-y-1/2;
   }
 }
-
-/* html {
-  color: hsl(210, 8%, 25%);
-}
-html.dark {
-  color: hsl(210, 8%, 82.5%);
-} */
 
 body {
   background-color: #f3f2ef;

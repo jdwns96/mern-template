@@ -20,7 +20,7 @@ module.exports = {
         "choco-gray-200": "#ACB3B9",
         "choco-gray-300": "#4a4e51",
 
-        "choco-text-light": "hsl(210,8%,25%)",
+        "choco-text": "hsl(210,8%,25%)",
         "choco-text-dark": "hsl(210,8%,82.5%)",
 
         "choco-gold-100": "hsl(48,100%,50%)",

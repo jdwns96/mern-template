@@ -90,7 +90,7 @@ export default function AppHeader() {
               >
                 <ul className="py-1 text-sm  border-solid border-b ">
                   <li
-                    className="flex items-center  font-semibold px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer"
+                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer"
                     onClick={() => {
                       navigate(`/${user_id}`);
                     }}
@@ -98,12 +98,12 @@ export default function AppHeader() {
                     <div className="text-sm">
                       <AccountCircle />
                     </div>
-                    <div className="text-md ml-2 font-semibold ">
+                    <div className="text-md ml-2  ">
                       <span>프로필</span>
                     </div>
                   </li>
                   <li
-                    className="flex items-center  font-semibold px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer"
+                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer"
                     onClick={() => {
                       navigate(`/account/edit`);
                     }}
@@ -111,7 +111,7 @@ export default function AppHeader() {
                     <div className="text-sm">
                       <Settings />
                     </div>
-                    <div className="text-md ml-2 font-semibold ">
+                    <div className="text-md ml-2  ">
                       <span>계정관리</span>
                     </div>
                   </li>

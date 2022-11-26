@@ -57,30 +57,44 @@ export default function FollowingPage() {
       <div className="w-full h-full">
         <div className="max-w-4xl mx-auto mt-6 px-4">
           <article className="bg-white shadow-md rounded-md mb-2">
-            <header className="choco-border-b p-4">
-              <h1 className="text-xl text-black">
+            <header className="p-4">
+              <h1 className="text-xl ">
                 <span className="font-semibold">{url_user_id}</span> 님의 팔로우 목록
               </h1>
             </header>
-            <nav className="flex">
+            {/* <nav className="flex">
               <div>
                 <Link to="../followee" relative="path">
-                  <button className="snack-btn py-2">팔로워</button>
+                  <button className="choco-btn py-2">팔로워</button>
                 </Link>
               </div>
               <div>
                 <Link to="">
-                  <button className="snack-btn py-2 bg-snack-sky">팔로우</button>
+                  <button className="choco-btn py-2 bg-choco-sky">팔로우</button>
                 </Link>
               </div>
-            </nav>
-            <nav className="flex justify-between choco-border-b p-4">
-              <div>
-                <select id="countries" className="choco-input">
-                  <option value="US">최신순</option>
-                  <option value="CA">오름차순</option>
-                  <option value="FR">내림차순</option>
-                </select>
+            </nav> */}
+            <nav className="flex justify-between choco-border-b pb-3 px-4">
+              <div className="flex">
+                <div className="flex grow">
+                  <button className="choco-btn text-sm rounded-r-none px-2">
+                    <Link to="../followee" relative="path" className="grow">
+                      팔로워
+                    </Link>
+                  </button>
+                  <button className="choco-btn choco-btn--selected text-sm rounded-l-none px-2 -ml-1">
+                    <Link to="./" className="grow">
+                      팔로우
+                    </Link>
+                  </button>
+                </div>
+                <div className="grow ml-2">
+                  <select id="countries" className="choco-input">
+                    <option value="0">최신순</option>
+                    <option value="1">오름차순</option>
+                    <option value="2">내림차순</option>
+                  </select>
+                </div>
               </div>
               <div className="">
                 <div className="relative w-full">
@@ -113,7 +127,7 @@ export default function FollowingPage() {
                           <p>{v.introduction ?? "-"}</p>
                         </div>
                       </div>
-                      <div>{id ? <button className="snack-btn">언팔로우</button> : <button className="snack-btn">팔로우</button>}</div>
+                      <div>{id ? <button className="choco-btn">언팔로우</button> : <button className="choco-btn">팔로우</button>}</div>
                     </div>
                   ))
                 )}
@@ -141,8 +155,8 @@ export default function FollowingPage() {
                       <button
                         className={cn(
                           "w-8 h-8 rounded-md hover:bg-gray-100 ",
-                          v === Number(pageParam) && "border border-solid border-snack-sky text-snack-sky",
-                          v === 1 && pageParam === null && "border border-solid border-snack-sky text-snack-sky",
+                          v === Number(pageParam) && "border border-solid border-choco-sky text-choco-sky",
+                          v === 1 && pageParam === null && "border border-solid border-choco-sky text-choco-sky",
                         )}
                       >
                         {v}

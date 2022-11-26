@@ -59,13 +59,13 @@ export default function App() {
   if (!initial) return <AppSpin />;
 
   return (
-    <>
+    <div className="text-choco-text dark:text-choco-text-dark">
       <Routes location={location} key={location.pathname}>
         {routes.map(({ key, path, Component }) => (
           <Route key={key} path={path} element={<Component />} />
         ))}
       </Routes>
       <Toaster position="bottom-center" />
-    </>
+    </div>
   );
 }
