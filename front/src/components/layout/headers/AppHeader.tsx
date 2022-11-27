@@ -50,7 +50,7 @@ export default function AppHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-[#F8F9F9] z-10 px-0 shadow-md border-solid border-b-4 border-choco-bronze-100 dark:bg-[hsl(0,0%,22.5%)]">
+    <header className="fixed top-0 left-0 right-0 bg-[#F8F9F9] z-10 px-0 shadow-md border-solid border-b-4 border-choco-bronze-100 dark:bg-[hsl(0,0%,22.5%)] dark:text-choco-bronze-100">
       <AppBar position="static" sx={HEADER} className="max-w-3xl mx-auto">
         <Toolbar variant="dense" className="flex justify-between" sx={{ padding: 0 }}>
           <div
@@ -98,6 +98,7 @@ export default function AppHeader() {
               </div>
               <article
                 className={cn(
+                  "dark:bg-[#2D2D2D] dark:text-choco-bronze-100 dark:border-choco-silver-300",
                   "block  transition-all z-50 overflow-auto bg-white text-[#262626] shadow-lg",
                   "fixed top-12 bottom-0 left-0 right-0 w-full h-screen border-t border-solid ",
                   "md:absolute md:top-14 md:right-0 md:bottom-[unset] md:w-[240px] md:h-auto md:border md:border-solid ",
@@ -105,9 +106,9 @@ export default function AppHeader() {
                   !accountToggle && "hidden",
                 )}
               >
-                <ul className="py-1 text-sm  border-solid border-b ">
+                <ul className="py-1 text-sm  border-solid border-b dark:border-choco-silver-300">
                   <li
-                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer"
+                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:bg-choco-bronze-300"
                     onClick={() => {
                       navigate(`/${user_id}`);
                     }}
@@ -120,7 +121,7 @@ export default function AppHeader() {
                     </div>
                   </li>
                   <li
-                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer"
+                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:bg-choco-bronze-300"
                     onClick={() => {
                       navigate(`/account/edit`);
                     }}
@@ -133,14 +134,14 @@ export default function AppHeader() {
                     </div>
                   </li>
                 </ul>
-                <nav className="px-5 py-2 choco-border-b flex justify-between">
-                  <span className=" text-sm font-medium  dark:text-gray-300">DARK MODE</span>
+                <nav className="px-5 py-2 choco-border-b flex justify-between dark:border-choco-silver-300">
+                  <span className=" text-sm font-medium ">DARK MODE</span>
                   <label className="inline-flex relative items-center cursor-pointer">
                     <input type="checkbox" value="" className="sr-only peer" onChange={onDarkModeToggle} checked={isDark} />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-choco-bronze-100 rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-choco-bronze-300"></div>
                   </label>
                 </nav>
-                <div className="flex border-solid  border-gray-300 px-5 py-2 hover:bg-gray-50 text-[#262626] cursor-pointer" onClick={onLogout}>
+                <div className="flex border-solid  border-gray-300 px-5 py-2 hover:bg-gray-50  cursor-pointer dark:hover:bg-choco-bronze-300 transition-all" onClick={onLogout}>
                   <button className="text-sm">
                     <span>로그아웃</span>
                   </button>
