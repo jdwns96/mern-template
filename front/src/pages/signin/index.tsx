@@ -16,6 +16,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import singinImages from "src/assets/signin-images";
 import Carousel from "react-material-ui-carousel";
 
+import Logo from "src/assets/svg/ChocolatLait";
+
 type Inputs = { user_id: string; password: string };
 
 export default function SigninPage() {
@@ -89,7 +91,7 @@ export default function SigninPage() {
               <div className="py-0 ">
                 <div className=" flex items-center">
                   <p className="text-choco-bronze-200">
-                    <EggAlt style={{ width: 48, height: 48 }} />
+                    <Logo />
                   </p>
                   <p className="font-extrabold ml-2 text-3xl text-choco-bronze-200">CHOCO</p>
                 </div>

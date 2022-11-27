@@ -17,7 +17,30 @@ export default function App() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
 
   // UI check (light or dark)
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const isDark = localStorage.getItem("color-theme") as "dark" | "light" | null | string;
+    // check if previously generated color theme
+    if (isDark !== null) {
+      if (isDark === "dark") {
+        document.documentElement.classList.add("dark");
+        return void 0;
+      }
+      if (isDark === "light") {
+        document.documentElement.classList.remove("dark");
+        return void 0;
+      }
+      localStorage.removeItem("color-theme");
+    }
+
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (isDark === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("color-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("color-theme", "light");
+    }
+  }, []);
 
   // login check
   const [initial, setInitial] = useState<boolean>(false);

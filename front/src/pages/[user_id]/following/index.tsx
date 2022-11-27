@@ -113,7 +113,7 @@ export default function FollowingPage() {
                   <div> skeleton </div>
                 ) : (
                   followingsData?.map((v, i) => (
-                    <div className="flex w-full justify-between border-b border-solid border-gray-300  p-4" key={v.id}>
+                    <div className="flex w-full justify-between border-b border-solid border-gray-300  p-4 md:px-6" key={v.id}>
                       <div className="flex ">
                         <div>
                           <Link to={`/${v.user_id}`}>

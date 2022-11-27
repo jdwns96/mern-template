@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { removeAuth } from "src/store/auth";
 import client from "src/libs/axios";
 
-import Choco from "src/assets/svg/ChocolatLait";
+import Logo from "src/assets/svg/ChocolatLait";
 
 const HEADER = { backgroundColor: "inherit", boxShadow: "none" };
 
@@ -15,6 +15,19 @@ export default function AppHeader() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [isDark, setIsDark] = useState<boolean>(localStorage.getItem("color-theme") === "dark" ? true : false);
+  const onDarkModeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isDark = e.target.checked;
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("color-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("color-theme", "light");
+    }
+    setIsDark(isDark);
+  };
 
   const accountMenu = useRef(null);
   useClickOutside(accountMenu, () => {
@@ -46,13 +59,14 @@ export default function AppHeader() {
               navigate("/");
             }}
           >
-            <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-              {/* chocolate svg */}
-              <Choco />
-              {/* <EggAlt style={{ color: "hsl(28,31%,52%)" }} /> */}
-            </IconButton>
+            {/* <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+              <Logo />
+            </IconButton> */}
+            <span className="px-2">
+              <Logo />
+            </span>
             <Typography variant="h6" color="inherit" component="div" className="flex items-center">
-              <span className="text-choco-bronze-200">CHOCO</span>
+              <span className="text-choco-bronze-200 ">CHOCO</span>
             </Typography>
           </div>
           <ul className="flex items-center h-12">
@@ -99,7 +113,7 @@ export default function AppHeader() {
                     }}
                   >
                     <div className="text-sm">
-                      <AccountCircle />
+                      <AccountCircle style={{ color: "hsl(28,31%,52%)" }} />
                     </div>
                     <div className="text-md ml-2  ">
                       <span>프로필</span>
@@ -112,13 +126,20 @@ export default function AppHeader() {
                     }}
                   >
                     <div className="text-sm">
-                      <Settings />
+                      <Settings style={{ color: "hsl(28,31%,52%)" }} />
                     </div>
                     <div className="text-md ml-2  ">
                       <span>계정관리</span>
                     </div>
                   </li>
                 </ul>
+                <nav className="px-5 py-2 choco-border-b flex justify-between">
+                  <span className=" text-sm font-medium  dark:text-gray-300">DARK MODE</span>
+                  <label className="inline-flex relative items-center cursor-pointer">
+                    <input type="checkbox" value="" className="sr-only peer" onChange={onDarkModeToggle} checked={isDark} />
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-choco-bronze-100 rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-choco-bronze-300"></div>
+                  </label>
+                </nav>
                 <div className="flex border-solid  border-gray-300 px-5 py-2 hover:bg-gray-50 text-[#262626] cursor-pointer" onClick={onLogout}>
                   <button className="text-sm">
                     <span>로그아웃</span>

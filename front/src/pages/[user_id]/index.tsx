@@ -42,17 +42,17 @@ export default function DynamicUserIdPage() {
               {/* background */}
               <div className="bg-gray-500 rounded-t-md">
                 <div className="relative w-full h-[200px] overflow-hidden rounded-t-md ">
-                  <div className="">
-                    <img src={imageTest} alt="" className="-z-10" />
+                  <div className="w-full h-full">
+                    <img src={imageTest} alt="" className="-z-10 object-cover w-full h-full" />
                   </div>
                 </div>
               </div>
               {/* background */}
               {/* profile */}
               <div>
-                <div className="absolute w-36 h-36 rounded-full bg-white left-8 bottom-0 overflow-hidden flex justify-center items-center">
+                <div className="absolute w-36 h-36 rounded-full bg-white left-8 bottom-0 overflow-hidden flex justify-center items-center cursor-pointer">
                   <div className="w-[8.5rem] h-[8.5rem] rounded-full bg-black  overflow-hidden ">
-                    <img src={imageTest} alt="" className="object-cover" />
+                    <img src={imageTest} alt="" className="object-cover w-full h-full " />
                   </div>
                 </div>
               </div>
