@@ -68,9 +68,9 @@ export default function FollowingPage() {
                   </Link>
                 </button>
                 <button className="choco-btn choco-btn--selected text-sm rounded-l-none px-2 -ml-1 whitespace-nowrap">
-                  <Link to="./" className="grow">
-                    팔로우
-                  </Link>
+                  {/* <Link to="./" className="grow"> */}
+                  팔로우
+                  {/* </Link> */}
                 </button>
               </div>
             </header>
@@ -113,7 +113,7 @@ export default function FollowingPage() {
                   <div> skeleton </div>
                 ) : (
                   followingsData?.map((v, i) => (
-                    <div className="flex w-full justify-between border-b border-solid border-gray-300  p-4 md:px-6" key={v.id}>
+                    <div className="flex w-full justify-between border-b border-solid border-gray-300  p-4 md:px-6 dark:border-choco-gray-300" key={v.id}>
                       <div className="flex ">
                         <div>
                           <Link to={`/${v.user_id}`}>

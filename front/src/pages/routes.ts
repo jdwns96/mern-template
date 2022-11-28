@@ -4,7 +4,8 @@ import SigninPage from "./signin";
 import UserIdPage from "./[user_id]";
 import UserFolloweePage from "./[user_id]/followee";
 import UserFollowingPage from "./[user_id]/following";
-import AccountEditPage from "./account/edit";
+
+import AccountPage from "./account";
 
 import NotFound from "./404";
 
@@ -41,9 +42,9 @@ export const routes: Routes[] = [
     Component: UserFollowingPage,
   },
   {
-    key: 7,
-    path: "/account/edit",
-    Component: AccountEditPage,
+    key: 6,
+    path: "/account",
+    Component: AccountPage,
   },
 
   {

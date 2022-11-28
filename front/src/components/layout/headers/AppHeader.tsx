@@ -106,7 +106,7 @@ export default function AppHeader() {
                   !accountToggle && "hidden",
                 )}
               >
-                <ul className="py-1 text-sm  border-solid border-b dark:border-choco-silver-300">
+                <ul className="py-1 text-sm  choco-border-b dark:border-choco-silver-300">
                   <li
                     className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:bg-choco-bronze-300"
                     onClick={() => {
@@ -123,7 +123,7 @@ export default function AppHeader() {
                   <li
                     className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:bg-choco-bronze-300"
                     onClick={() => {
-                      navigate(`/account/edit`);
+                      navigate(`/account`);
                     }}
                   >
                     <div className="text-sm">
@@ -134,8 +134,8 @@ export default function AppHeader() {
                     </div>
                   </li>
                 </ul>
-                <nav className="px-5 py-2 choco-border-b flex justify-between dark:border-choco-silver-300">
-                  <span className=" text-sm font-medium ">DARK MODE</span>
+                <nav className="px-5 py-2 choco-border-b flex justify-between dark:border-choco-silver-300 transition-all">
+                  <span className=" text-sm">DARK MODE</span>
                   <label className="inline-flex relative items-center cursor-pointer">
                     <input type="checkbox" value="" className="sr-only peer" onChange={onDarkModeToggle} checked={isDark} />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-choco-bronze-100 rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-choco-bronze-300"></div>

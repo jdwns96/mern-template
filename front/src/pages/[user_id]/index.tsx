@@ -66,7 +66,9 @@ export default function DynamicUserIdPage() {
                   <div className="flex">
                     {id === userData?.id ? (
                       <>
-                        <button className="choco-btn">정보 관리</button>
+                        <Link to="/account">
+                          <button className="choco-btn">정보 관리</button>
+                        </Link>
                       </>
                     ) : (
                       <>

@@ -50,22 +50,43 @@ export default function FolloweePage() {
     <AppTemplate>
       <div className="w-full h-full">
         <div className="max-w-4xl mx-auto mt-6 px-4">
-          <article className="bg-white shadow-md rounded-md mb-2">
-            <header className="border-b border-solid border-gray-300 p-4">
+          <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
+            <header className="p-4 flex justify-between">
               <h1 className="text-xl">
                 <span className="font-semibold">{url_user_id}</span> 님의 팔로워 목록
               </h1>
-            </header>
-            <nav className="flex">
-              <div>
-                <Link to="" relative="path">
-                  <button className="snack-btn py-4 bg-snack-sky">팔로워</button>
-                </Link>
+              <div className="flex ">
+                <button className="choco-btn text-sm rounded-r-none px-2 whitespace-nowrap choco-btn--selected ">
+                  {/* <Link to="./" className="grow"> */}
+                  팔로워
+                  {/* </Link> */}
+                </button>
+                <button className="choco-btn text-sm rounded-l-none px-2 -ml-1 whitespace-nowrap">
+                  <Link to="../following" relative="path" className="grow block">
+                    팔로우
+                  </Link>
+                </button>
               </div>
-              <div>
-                <Link to="../following" relative="path">
-                  <button className="snack-btn py-4 ">팔로우</button>
-                </Link>
+            </header>
+            <nav className="flex justify-between choco-border-b pb-3 px-4">
+              <div className="flex">
+                <div className="grow ">
+                  <select id="countries" className="choco-input">
+                    <option value="0">최신순</option>
+                    <option value="1">오름차순</option>
+                    <option value="2">내림차순</option>
+                  </select>
+                </div>
+              </div>
+              <div className="">
+                <div className="relative w-full">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <input type="text" id="simple-search" className="choco-input pl-10" placeholder="Search" required />
+                </div>
               </div>
             </nav>
             <main>
@@ -74,7 +95,7 @@ export default function FolloweePage() {
                   <div> skeleton </div>
                 ) : (
                   followeesData?.map((v, i) => (
-                    <div className="flex w-full justify-between border-b border-solid border-gray-300 pb-2 mb-4" key={v.id}>
+                    <div className="flex w-full justify-between border-b border-solid border-gray-300  p-4 md:px-6 dark:border-choco-gray-300" key={v.id}>
                       <div className="flex ">
                         <div>
                           <Link to={`/${v.user_id}`}>
@@ -100,7 +121,7 @@ export default function FolloweePage() {
           {isFolloweeCountLoading ? (
             <div> skeleton </div>
           ) : (
-            <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4">
+            <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4 dark:bg-[#3D3D3D]">
               <ul className="flex  p-2">
                 <li className="mx-0.5">
                   <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
@@ -118,8 +139,8 @@ export default function FolloweePage() {
                       <button
                         className={cn(
                           "w-8 h-8 rounded-md hover:bg-gray-100 ",
-                          v === Number(pageParam) && "border border-solid border-snack-sky text-snack-sky",
-                          v === 1 && pageParam === null && "border border-solid border-snack-sky text-snack-sky",
+                          v === Number(pageParam) && "border border-solid border-choco-bronze-200 text-choco-bronze-200",
+                          v === 1 && pageParam === null && "border border-solid border-choco-bronze-200 text-choco-bronze-200",
                         )}
                       >
                         {v}
