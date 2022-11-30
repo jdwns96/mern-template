@@ -73,7 +73,7 @@ export default function SigninPage() {
   }, []);
 
   return (
-    <main className="w-full h-screen bg-[#fefefe] overflow-hidden">
+    <main className="w-full h-screen bg-[#fefefe]  overflow-hidden dark:bg-[#2D2D2D]">
       <div className="flex h-full">
         <div className="w-full h-full relative hidden lg:flex  flex-col grow ">
           <Carousel className="relative h-full w-full " indicators={false} stopAutoPlayOnHover={false} swipe={false} height={"100%"} interval={7000}>

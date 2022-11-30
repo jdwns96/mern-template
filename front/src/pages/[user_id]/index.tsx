@@ -5,7 +5,8 @@ import { useAppSelector } from "src/store";
 
 import imageTest from "src/assets/images/image-test.jpg";
 import cn from "classnames";
-import { ModeEditOutline } from "@mui/icons-material";
+import { Edit, ModeEditOutline } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import AppFooter from "src/components/layout/footers/AppFooter";
 import { useUserFollowingCheckQuery, useUserQuery } from "src/query/user";
 
@@ -105,7 +106,7 @@ export default function DynamicUserIdPage() {
               <div className="flex px-6">
                 <div className="w-full">
                   <span className="cursor-pointer">
-                    <span className="text-snack-sky ">스낵</span>
+                    <span className="text-snack-sky ">포스트</span>
                     <span className="ml-4">0</span>
                   </span>
                 </div>
@@ -131,8 +132,19 @@ export default function DynamicUserIdPage() {
           {/* <article className="bg-white shadow-md rounded-md mb-2">글쓰기</article> */}
           <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
             <header className="px-6 py-4 flex">
-              <h1 className="text-lg font-semibold">
-                <span>스낵</span>
+              <h1 className="text-lg font-semibold flex justify-between w-full">
+                <div className="flex items-center">
+                  <span>포스트</span>
+                </div>
+                {id === userData?.id && (
+                  <div>
+                    <span className="text-choco-bronze-300">
+                      <IconButton>
+                        <Edit />
+                      </IconButton>
+                    </span>
+                  </div>
+                )}
               </h1>
               <div></div>
             </header>

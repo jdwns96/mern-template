@@ -6,9 +6,16 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useSelector } from "react-redux";
 import { useAppSelector } from "src/store";
 
+import Modal from "src/components/common/modal";
+
 const profileInitialState = {
   name: "",
   introduction: "",
+};
+const passwordInitialState = {
+  currentPassword: "",
+  newPassword: "",
+  newPasswordConfirmation: "",
 };
 
 const ACCORDION_STYLE = {
@@ -23,7 +30,7 @@ export default function AccountPage() {
   const { id, user_id, name, introduction } = useAppSelector((store) => store.auth);
 
   // mui accordion example
-  const [expanded, setExpanded] = React.useState<string | false>(false);
+  const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const handleChange = (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
@@ -33,6 +40,7 @@ export default function AccountPage() {
     name: name ?? "",
     introduction: introduction ?? "",
   });
+  const [passwordInputs, setPasswordInputs] = useState(passwordInitialState);
 
   const onChangeInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,7 +49,20 @@ export default function AccountPage() {
       [name]: value,
     });
   };
+  const onChangePasswordInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setPasswordInputs({
+      ...passwordInputs,
+      [name]: value,
+    });
+  };
+
   const onProfileSave = () => {};
+
+  // const [isToggle, setIsToggle] = useState(true);
+  // const onClose = () => {
+  //   setIsToggle(false);
+  // };
 
   return (
     <AppTemplate>
@@ -73,7 +94,7 @@ export default function AccountPage() {
                   </div>
                   <div className="flex flex-col md:flex-row mb-4">
                     <div className="flex md:justify-end  md:w-28">
-                      <label htmlFor="name" className="py-1.5 cursor-pointer">
+                      <label htmlFor="name" className="py-1.5 cursor-pointer text-sm ">
                         이름
                       </label>
                     </div>
@@ -86,7 +107,7 @@ export default function AccountPage() {
                   </div>
                   <div className="flex flex-col md:flex-row mb-4">
                     <div className="flex md:justify-end  md:w-28">
-                      <label htmlFor="introduction" className="py-1.5 cursor-pointer">
+                      <label htmlFor="introduction" className="py-1.5 cursor-pointer text-sm">
                         소개
                       </label>
                     </div>
@@ -116,7 +137,59 @@ export default function AccountPage() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography></Typography>
+                <Typography>
+                  <div className="flex flex-col md:flex-row mb-4">
+                    <div className="flex md:justify-end  md:w-28">
+                      <label htmlFor="currentPassword" className="py-1.5 cursor-pointer text-sm">
+                        현재 비밀번호
+                      </label>
+                    </div>
+                    <div className="md:ml-4 w-full max-w-[300px]">
+                      <div className="mb-2">
+                        <input id="currentPassword" className="choco-input" name="currentPassword" type="textarea" value={passwordInputs.currentPassword} onChange={onChangePasswordInputs} />
+                      </div>
+                      <div className="text-[#828282] text-xs">비밀번호 변경을 위해 회원님의 현재 비밀번호를 입력해주세요.</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col md:flex-row mb-4">
+                    <div className="flex md:justify-end  md:w-28">
+                      <label htmlFor="newPassword" className="py-1.5 cursor-pointer text-sm">
+                        새 비밀번호
+                      </label>
+                    </div>
+                    <div className="md:ml-4 w-full max-w-[300px]">
+                      <div className="mb-2">
+                        <input id="newPassword" className="choco-input" name="newPassword" type="textarea" value={passwordInputs.newPassword} onChange={onChangePasswordInputs} />
+                      </div>
+                      <div className="text-[#828282] text-xs">변경할 비밀번호를 입력해주세요.</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col md:flex-row mb-4">
+                    <div className="flex md:justify-end  md:w-28">
+                      <label htmlFor="newPasswordConfirmation" className="py-1.5 cursor-pointer text-sm">
+                        새 비밀번호 확인
+                      </label>
+                    </div>
+                    <div className="md:ml-4 w-full max-w-[300px]">
+                      <div className="mb-2">
+                        <input
+                          id="newPasswordConfirmation"
+                          className="choco-input"
+                          name="newPasswordConfirmation"
+                          type="textarea"
+                          value={passwordInputs.newPasswordConfirmation}
+                          onChange={onChangePasswordInputs}
+                        />
+                      </div>
+                      <div className="text-[#828282] text-xs">변경할 비밀번호를 다시한번 입력해주세요.</div>
+                    </div>
+                  </div>
+                  <footer className="flex justify-end">
+                    <button className="choco-btn" onClick={onProfileSave}>
+                      저장
+                    </button>
+                  </footer>
+                </Typography>
               </AccordionDetails>
             </Accordion>
           </article>
@@ -136,6 +209,17 @@ export default function AccountPage() {
           </article>
         </div>
       </div>
+
+      {/* Modal test */}
+      {/* <Modal open={isToggle} onClose={onClose}>
+        <div className=" max-w-[400px]">
+          <header className="p-8">
+            orem ipsum dolor sit amet consectetur, adipisicing elit. Quo sunt sed quae atque obcaecati facere voluptas, quas aspernatur mollitia ipsam, dolor officia, hic repellat! Quibusdam et a
+            magnam accusantium distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa temporibus sunt nulla! Illum saepe expedita voluptatem, placeat rem tempore dolor. Doloremque,
+            orem ipsum dolor sit amet consectetur, adipisicing elit. Quo sunt sed quae atque obcaecati facere voluptas, quas aspernatur mollitia ipsam, dolor officia, hic repellat! Quibusdam et a
+          </header>
+        </div>
+      </Modal> */}
 
       <AppFooter />
     </AppTemplate>
