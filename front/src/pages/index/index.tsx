@@ -12,6 +12,8 @@ import client from "src/libs/axios";
 import { IconButton } from "@mui/material";
 import { MoreHoriz, MoreVert } from "@mui/icons-material";
 
+import img from "src/assets/images/image-test.jpg";
+
 export default function HomePage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
 
@@ -85,7 +87,17 @@ export default function HomePage() {
                   </div>
                 </header>
                 <main>
-                  <div className="w-full"></div>
+                  <div className="relative w-full h-full bg-black pb-[100%] overflow-hidden">
+                    <div className="absolute top-0 left-0 bottom-0 right-0 flex justify-center items-center">
+                      <img src={img} alt="post" className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                  <div>
+                    <ul className="flex">
+                      <li>LIKE</li>
+                      <li>Comment</li>
+                    </ul>
+                  </div>
                 </main>
               </article>
             ))}
