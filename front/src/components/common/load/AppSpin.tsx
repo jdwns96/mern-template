@@ -8,10 +8,10 @@ export default function AppSpin() {
       <div>
         <div className="py-0 ">
           <div className="py-4 px-4 flex justify-center items-center mb-4 bg-edge-blue rounded-md">
-            <p className="text-snack-sky">
+            <p className="text-choco-bronze-200">
               <EggAlt style={{ width: 48, height: 48 }} />
             </p>
-            <p className="font-extrabold ml-2 text-snack-sky">SNACK</p>
+            <p className="font-extrabold ml-2 text-choco-bronze-200">CHOCO</p>
           </div>
         </div>
         <LinearProgress />

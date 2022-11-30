@@ -9,6 +9,8 @@ import InfinitySpin from "src/components/common/load/InfinitySpin";
 import { useEffect, useState } from "react";
 
 import client from "src/libs/axios";
+import { IconButton } from "@mui/material";
+import { MoreHoriz, MoreVert } from "@mui/icons-material";
 
 export default function HomePage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
@@ -50,7 +52,7 @@ export default function HomePage() {
       <section className="w-full h-full">
         <section className="w-full h-full max-w-xl mx-auto px-3">
           <main className="pt-8">
-            <div>
+            {/* <div>
               <button
                 className="snack-btn"
                 onClick={async () => {
@@ -60,9 +62,32 @@ export default function HomePage() {
               >
                 text btn
               </button>
-            </div>
+            </div> */}
             {data.map((v, i) => (
-              <Snack key={i} />
+              <article className="w-full bg-white dark:bg-[#3D3D3D] rounded-lg shadow-md" key={i}>
+                <header className="p-3">
+                  <div className="w-full h-full flex justify-between items-center">
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 rounded-full choco-border"></div>
+                      <div className="ml-3 text-md font-semibold">
+                        <p>아이디</p>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <span className="text-choco-bronze-300">
+                          <IconButton>
+                            <MoreHoriz />
+                          </IconButton>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+                <main>
+                  <div className="w-full"></div>
+                </main>
+              </article>
             ))}
           </main>
           <InfinitySpin />
