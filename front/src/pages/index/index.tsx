@@ -1,8 +1,5 @@
 import { useAppDispatch, useAppSelector } from "src/store";
 
-// components
-import Snack from "src/components/common/snack";
-
 import AppTemplate from "src/components/layout/templates/AppTemplate";
 import AppFooter from "src/components/layout/footers/AppFooter";
 import InfinitySpin from "src/components/common/load/InfinitySpin";
@@ -10,7 +7,10 @@ import { useEffect, useState } from "react";
 
 import client from "src/libs/axios";
 import { IconButton } from "@mui/material";
-import { MoreHoriz, MoreVert } from "@mui/icons-material";
+import { ChatBubbleOutline, MoreHoriz, MoreVert, ThumbUpOffAlt } from "@mui/icons-material";
+
+import Carousel from "src/components/common/carousel";
+import MoreContent from "src/components/common/more";
 
 import img from "src/assets/images/image-test.jpg";
 
@@ -66,7 +66,7 @@ export default function HomePage() {
               </button>
             </div> */}
             {data.map((v, i) => (
-              <article className="w-full bg-white dark:bg-[#3D3D3D] rounded-lg shadow-md" key={i}>
+              <article className="w-full bg-white dark:bg-[#3D3D3D] rounded-lg shadow-md mb-6" key={i}>
                 <header className="p-3">
                   <div className="w-full h-full flex justify-between items-center">
                     <div className="flex items-center">
@@ -87,18 +87,38 @@ export default function HomePage() {
                   </div>
                 </header>
                 <main>
-                  <div className="relative w-full h-full bg-black pb-[100%] overflow-hidden">
-                    <div className="absolute top-0 left-0 bottom-0 right-0 flex justify-center items-center">
-                      <img src={img} alt="post" className="w-full h-full object-cover" />
-                    </div>
-                  </div>
+                  <Carousel images={[img, img]} />
+
                   <div>
-                    <ul className="flex">
-                      <li>LIKE</li>
-                      <li>Comment</li>
+                    <ul className="flex p-1 px-2">
+                      <li className="p-2">
+                        <span className="cursor-pointer">
+                          <ThumbUpOffAlt style={{ width: 28, height: 28 }} />
+                        </span>
+                      </li>
+                      <li className="p-2">
+                        <span className="cursor-pointer">
+                          <ChatBubbleOutline style={{ width: 26, height: 26 }} />
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  {/* content area */}
+                  <div className="p-2 px-4">
+                    <MoreContent
+                      text={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, deserunt harum! Quia doloremque molestiae aliquid laborum, ut eos, ratione culpa ullam quasi deleniti quod!
+                      Ipsam, illo placeat. Iste, exercitationem doloremque.`}
+                    />
+                    {/* comment area */}
+                    <ul>
+                      <li></li>
+                      <li></li>
                     </ul>
                   </div>
                 </main>
+                <footer className="px-4 py-2">
+                  <span className="text-xs font-semibold">2일전</span>
+                </footer>
               </article>
             ))}
           </main>
