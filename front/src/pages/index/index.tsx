@@ -14,6 +14,8 @@ import MoreContent from "src/components/common/more";
 
 import img from "src/assets/images/image-test.jpg";
 
+import { PostSkeleton } from "src/components/common/skeleton";
+
 export default function HomePage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
 
@@ -65,20 +67,23 @@ export default function HomePage() {
                 text btn
               </button>
             </div> */}
+            {/* {new Array(10).fill(0).map((_, i) => (
+              <PostSkeleton />
+            ))} */}
             {data.map((v, i) => (
               <article className="w-full bg-white dark:bg-[#3D3D3D] rounded-lg shadow-md mb-6" key={i}>
                 <header className="p-3">
                   <div className="w-full h-full flex justify-between items-center">
                     <div className="flex items-center">
-                      <div className="w-8 h-8 rounded-full choco-border"></div>
+                      <div className="w-9 h-9 rounded-full choco-border"></div>
                       <div className="ml-3 text-md font-semibold">
                         <p>아이디</p>
                       </div>
                     </div>
                     <div>
                       <div>
-                        <span className="text-choco-bronze-300">
-                          <IconButton>
+                        <span className="text-choco-bronze-300 dark:text-choco-text-dark">
+                          <IconButton style={{ color: "inherit" }}>
                             <MoreHoriz />
                           </IconButton>
                         </span>
@@ -88,7 +93,6 @@ export default function HomePage() {
                 </header>
                 <main>
                   <Carousel images={[img, img]} />
-
                   <div>
                     <ul className="flex p-1 px-2">
                       <li className="p-2">

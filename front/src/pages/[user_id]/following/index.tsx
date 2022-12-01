@@ -12,6 +12,8 @@ import paginationUtil from "src/utils/pagination-util";
 import { KeyboardArrowLeft, KeyboardArrowRight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, Search } from "@mui/icons-material";
 import { useAppSelector } from "src/store";
 
+import { FollowSkeleton } from "src/components/common/skeleton";
+
 export default function FollowingPage() {
   // redux
   const { id, user_id, name } = useAppSelector((store) => store.auth);
@@ -109,28 +111,26 @@ export default function FollowingPage() {
             </nav>
             <main>
               <div className="">
-                {isFollowingsLoading ? (
-                  <div> skeleton </div>
-                ) : (
-                  followingsData?.map((v, i) => (
-                    <div className="flex w-full justify-between border-b border-solid border-gray-300  p-4 md:px-6 dark:border-choco-gray-300" key={v.id}>
-                      <div className="flex ">
-                        <div>
-                          <Link to={`/${v.user_id}`}>
-                            <div className="rounded-full w-16 h-16 bg-gray-300"></div>
-                          </Link>
+                {isFollowingsLoading
+                  ? new Array(10).fill(0).map((_, i) => <FollowSkeleton />)
+                  : followingsData?.map((v, i) => (
+                      <div className="flex w-full justify-between border-b border-solid border-gray-300  p-3 md:px-5 dark:border-choco-gray-300" key={v.id}>
+                        <div className="flex ">
+                          <div>
+                            <Link to={`/${v.user_id}`}>
+                              <div className="rounded-full w-16 h-16 bg-gray-300"></div>
+                            </Link>
+                          </div>
+                          <div className="ml-6">
+                            <p>
+                              <Link to={`/${v.user_id}`}>{v.name}</Link>
+                            </p>
+                            <p>{v.introduction ?? "-"}</p>
+                          </div>
                         </div>
-                        <div className="ml-6">
-                          <p>
-                            <Link to={`/${v.user_id}`}>{v.name}</Link>
-                          </p>
-                          <p>{v.introduction ?? "-"}</p>
-                        </div>
+                        <div className="flex items-center">{id ? <button className="choco-btn">언팔로우</button> : <button className="choco-btn">팔로우</button>}</div>
                       </div>
-                      <div className="flex items-center">{id ? <button className="choco-btn">언팔로우</button> : <button className="choco-btn">팔로우</button>}</div>
-                    </div>
-                  ))
-                )}
+                    ))}
               </div>
             </main>
           </article>
