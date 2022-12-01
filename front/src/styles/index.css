@@ -6,6 +6,9 @@
   .choco-border {
     @apply border border-solid border-choco-gray-100 dark:border-choco-gold-300;
   }
+  .choco-border-r {
+    @apply border-r border-solid border-choco-gray-100 dark:border-choco-gold-300;
+  }
   .choco-border-b {
     @apply border-b border-solid border-choco-gray-100 dark:border-choco-gold-300;
   }

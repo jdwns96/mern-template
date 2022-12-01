@@ -50,7 +50,7 @@ export default function AppHeader() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-[#F8F9F9] z-10 px-0 shadow-md border-solid border-b-4 border-choco-bronze-100 dark:bg-[hsl(0,0%,22.5%)] dark:text-choco-bronze-100">
+    <header className=" fixed top-0 left-0 right-0 bg-[#F8F9F9] z-10 px-0 shadow-md border-solid border-b-4 border-choco-bronze-100 dark:bg-[hsl(0,0%,22.5%)] dark:text-choco-bronze-100">
       <AppBar position="static" sx={HEADER} className="max-w-3xl mx-auto">
         <Toolbar variant="dense" className="flex justify-between" sx={{ padding: 0 }}>
           <div
@@ -81,7 +81,12 @@ export default function AppHeader() {
             <li className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block">
               <Search style={{ color: "hsl(28,31%,52%)" }} />
             </li>
-            <li className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block">
+            <li
+              className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block"
+              onClick={() => {
+                navigate("/chat");
+              }}
+            >
               <Telegram style={{ color: "hsl(28,31%,52%)" }} />
             </li>
             <li className="relative transition-all" ref={accountMenu}>
@@ -92,7 +97,7 @@ export default function AppHeader() {
                 }}
               >
                 {/* <span>{user_id}</span> */}
-                <div className="">
+                <div className="px-2 md:px-0">
                   <div className="w-6 h-6 rounded-full  border border-solid edge-border"></div>
                 </div>
               </div>
@@ -110,7 +115,7 @@ export default function AppHeader() {
                   <li
                     className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:bg-choco-bronze-300"
                     onClick={() => {
-                      navigate(`/${user_id}`);
+                      navigate(`/user/${user_id}`);
                     }}
                   >
                     <div className="text-sm">
