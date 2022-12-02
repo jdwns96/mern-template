@@ -1,10 +1,12 @@
 import React from "react";
 
 interface Props {
-  value: {
-    id: string;
-    text: string;
-  };
+  value:
+    | {
+        id: string;
+        text: string;
+      }
+    | any;
 }
 
 export default function Send(props: Props) {

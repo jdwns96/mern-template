@@ -1,11 +1,13 @@
 import React from "react";
 
 interface Props {
-  value: {
-    id: string;
-    text: string;
-    image?: string | null;
-  };
+  value:
+    | {
+        id: string;
+        text: string;
+        image?: string | null;
+      }
+    | any;
 }
 
 export default function Receive(props: Props) {
@@ -16,7 +18,9 @@ export default function Receive(props: Props) {
       <div className="pr-16 md:pr-36 flex justify-start">
         {image ? (
           <div className="flex items-end shrink">
-            <div className="w-10 h-10 choco-border rounded-full"></div>
+            <div className="w-10 h-10 choco-border rounded-full overflow-hidden">
+              <img src={image} alt="" className="w-full h-full object-cover" />
+            </div>
           </div>
         ) : (
           <div className="w-10 shrink-0"></div>

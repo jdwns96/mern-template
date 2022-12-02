@@ -19,6 +19,32 @@ export default function ChatPage() {
     setSideComponent(!sideComponent);
   };
 
+  const [message, setMessage] = useState([
+    {
+      _id: "1",
+      id: 1,
+      user_id: "foo",
+      text: "안녕하세요",
+      created_at: new Date(),
+    },
+    {
+      _id: "2",
+      id: 2,
+      user_id: "bar",
+      text: "안녕하세요",
+      created_at: new Date(),
+      image: "https://avatars.githubusercontent.com/u/61939286?v=4",
+    },
+    {
+      _id: "3",
+      id: 2,
+      user_id: "bar",
+      text: "잘 지네시죠?",
+      created_at: new Date(),
+      image: "https://avatars.githubusercontent.com/u/61939286?v=4",
+    },
+  ]);
+
   return (
     <AppTemplate>
       <section className="fixed top-0 bottom-0 left-0 right-0 pt-[52px] pb-[56px] md:pb-0">
@@ -50,9 +76,28 @@ export default function ChatPage() {
               </header>
               <main className="w-full h-full overflow-y-auto px-4 flex flex-col">
                 <div className="pt-4">
-                  <Receive value={{ id: "text", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium", image: "asd" }} />
+                  {message.map((v, i, origin) => {
+                    if (v.user_id === user_id) {
+                      return <Send key={i} value={v} />;
+                    }
+                    const next = origin[i + 1];
+                    if (next?.user_id === v.user_id) {
+                      return (
+                        <Receive
+                          key={i}
+                          value={{
+                            ...v,
+                            image: null,
+                          }}
+                        />
+                      );
+                    } else {
+                      return <Receive key={i} value={v} />;
+                    }
+                  })}
+                  {/* <Receive value={{ id: "text", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium", image: "asd" }} />
                   <Send value={{ id: "text", text: "Lorem ipsum dolor sit amet consectetur adipi" }} />
-                  <TimeLine time={new Date()} />
+                  <TimeLine time={new Date()} /> */}
                 </div>
               </main>
               <nav className="p-4">
