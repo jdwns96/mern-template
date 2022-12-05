@@ -10,6 +10,8 @@ import { IconButton } from "@mui/material";
 import AppFooter from "src/components/layout/footers/AppFooter";
 import { useUserFollowingCheckQuery, useUserQuery } from "src/query/user";
 
+import { CreatePostModal } from "src/components/_pages/_[user_id]";
+
 export default function DynamicUserIdPage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
   const navigate = useNavigate();
@@ -138,7 +140,12 @@ export default function DynamicUserIdPage() {
                 </div>
                 {id === userData?.id && (
                   <div>
-                    <span className="text-choco-bronze-300">
+                    <span
+                      className="text-choco-bronze-300"
+                      onClick={() => {
+                        navigate("?modal=post");
+                      }}
+                    >
                       <IconButton>
                         <Edit />
                       </IconButton>
@@ -155,6 +162,7 @@ export default function DynamicUserIdPage() {
       {/* <div>{url_user_id}</div>
       <div>{user_id}</div> */}
       <AppFooter />
+      <CreatePostModal />
     </AppTemplate>
   );
 }

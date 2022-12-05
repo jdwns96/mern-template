@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "src/store";
 
 import AppTemplate from "src/components/layout/templates/AppTemplate";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import cn from "classnames";
 
@@ -19,7 +19,9 @@ export default function ChatPage() {
     setSideComponent(!sideComponent);
   };
 
-  const [message, setMessage] = useState([
+  const [message, setMessage] = useState<string>("");
+
+  const [chat, setChat] = useState([
     {
       _id: "1",
       id: 1,
@@ -45,6 +47,23 @@ export default function ChatPage() {
     },
   ]);
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (message.trim() === "") return null;
+
+    setChat((p) => [
+      ...p,
+      {
+        _id: "4",
+        id: 1,
+        user_id: "foo",
+        text: message,
+        created_at: new Date(),
+      },
+    ]);
+    setMessage("");
+  };
   return (
     <AppTemplate>
       <section className="fixed top-0 bottom-0 left-0 right-0 pt-[52px] pb-[56px] md:pb-0">
@@ -76,7 +95,7 @@ export default function ChatPage() {
               </header>
               <main className="w-full h-full overflow-y-auto px-4 flex flex-col">
                 <div className="pt-4">
-                  {message.map((v, i, origin) => {
+                  {chat.map((v, i, origin) => {
                     if (v.user_id === user_id) {
                       return <Send key={i} value={v} />;
                     }
@@ -101,12 +120,7 @@ export default function ChatPage() {
                 </div>
               </main>
               <nav className="p-4">
-                <form
-                  action=""
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                  }}
-                >
+                <form action="" onSubmit={onSubmit}>
                   <div className="rounded-lg choco-border flex p-1 items-center">
                     <div className="h-full">
                       <button type="button">
@@ -116,7 +130,14 @@ export default function ChatPage() {
                       </button>
                     </div>
                     <div className="grow flex items-center">
-                      <textarea className="w-full h-full p-2 outline-none focus:outline-none resize-none max-h-10" placeholder="메세지 보내기" />
+                      <textarea
+                        className="w-full h-full p-2 outline-none focus:outline-none resize-none max-h-10"
+                        placeholder="메세지 보내기"
+                        value={message}
+                        onChange={(e) => {
+                          setMessage(e.target.value);
+                        }}
+                      />
                     </div>
                     <div>
                       <button type="submit">

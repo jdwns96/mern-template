@@ -1,0 +1,19 @@
+/* .toastui-editor-defaultUI-toolbar {
+  height: auto;
+}
+
+.toastui-editor-toolbar-group > .toastui-editor-toolbar-icons {
+  width: 1.5rem;
+  height: 1.5rem;
+} */
+
+.toastui-editor-defaultUI {
+  border: none;
+}
+
+.toastui-editor-mode-switch {
+  display: none !important;
+}
+.toastui-editor-contents {
+  font-size: 1.125rem;
+}
