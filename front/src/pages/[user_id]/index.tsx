@@ -5,12 +5,14 @@ import { useAppSelector } from "src/store";
 
 import imageTest from "src/assets/images/image-test.jpg";
 import cn from "classnames";
-import { Edit, ModeEditOutline } from "@mui/icons-material";
+import { Add, Edit, ModeEditOutline } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import AppFooter from "src/components/layout/footers/AppFooter";
 import { useUserFollowingCheckQuery, useUserQuery } from "src/query/user";
 
 import { CreatePostModal } from "src/components/_pages/_[user_id]";
+
+import image from "src/assets/images/image-test.jpg";
 
 export default function DynamicUserIdPage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
@@ -62,7 +64,7 @@ export default function DynamicUserIdPage() {
               {/* profile */}
               <div className="py-6"></div>
             </div>
-            <main className="py-2 px-6 pb-4">
+            <main className="py-2 px-6 pb-4 choco-border-b">
               <div>
                 <h1 className=" flex justify-between">
                   <p className="text-2xl font-bold ">{userData?.user_id}</p>
@@ -102,8 +104,34 @@ export default function DynamicUserIdPage() {
                 </p>
               </div>
             </main>
+            <div className="py-4">
+              <div className="flex px-6 text-sm">
+                <div className="w-full text-center">
+                  <span className="cursor-pointer">
+                    <span className="text-snack-sky ">포스트</span>
+                    <span className="ml-4">0</span>
+                  </span>
+                </div>
+                <div className="w-full text-center">
+                  <Link to="followee">
+                    <span className="cursor-pointer ">
+                      <span className="text-snack-sky ">팔로워</span>
+                      <span className="ml-4">{userData?.followee_cnt}</span>
+                    </span>
+                  </Link>
+                </div>
+                <div className="w-full text-center">
+                  <Link to="following">
+                    <span className="cursor-pointer ">
+                      <span className="text-snack-sky ">팔로우</span>
+                      <span className="ml-4">{userData?.following_cnt}</span>
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </article>
-          <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
+          {/* <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
             <div className="py-4">
               <div className="flex px-6">
                 <div className="w-full">
@@ -130,10 +158,10 @@ export default function DynamicUserIdPage() {
                 </div>
               </div>
             </div>
-          </article>
+          </article> */}
           {/* <article className="bg-white shadow-md rounded-md mb-2">글쓰기</article> */}
           <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
-            <header className="px-6 py-4 flex">
+            <header className="px-6 py-4 pb-2 flex">
               <h1 className="text-lg font-semibold flex justify-between w-full">
                 <div className="flex items-center">
                   <span>포스트</span>
@@ -141,13 +169,13 @@ export default function DynamicUserIdPage() {
                 {id === userData?.id && (
                   <div>
                     <span
-                      className="text-choco-bronze-300"
+                      className=""
                       onClick={() => {
                         navigate("?modal=post");
                       }}
                     >
-                      <IconButton>
-                        <Edit />
+                      <IconButton style={{ color: "inherit" }}>
+                        <Edit style={{ color: "inherit" }} />
                       </IconButton>
                     </span>
                   </div>
@@ -155,7 +183,41 @@ export default function DynamicUserIdPage() {
               </h1>
               <div></div>
             </header>
-            <div className="">1</div>
+            <main className="">
+              <div className="flex px-1">
+                <div className="m-1 w-1/3 relative  border-choco-gold-300 dark:border-choco-bronze-100 border-2">
+                  <div className=" pb-[100%] bg-black rounded-sm cursor-pointer overflow-hidden">
+                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="m-1 w-1/3 relative  border-choco-gold-300 dark:border-choco-bronze-100 border-2">
+                  <div className=" pb-[100%] bg-black rounded-sm cursor-pointer overflow-hidden">
+                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="m-1 w-1/3 relative  border-choco-gold-300 dark:border-choco-bronze-100 border-2">
+                  <div className=" pb-[100%] bg-black rounded-sm cursor-pointer overflow-hidden">
+                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+              {/* if post is not exist */}
+              {/* <article className="p-8 h-72 flex flex-col justify-center items-center">
+                <div className="mb-8">
+                  <span
+                    className="text-choco-gold-300 cursor-pointer"
+                    onClick={() => {
+                      navigate("?modal=post");
+                    }}
+                  >
+                    <Add style={{ width: 54, height: 54 }} />
+                  </span>
+                </div>
+                <p className="text-lg">포스트 가 없습니다.</p>
+              </article> */}
+              {/* if post is not exist  */}
+            </main>
+            <footer className="p-4"></footer>
           </article>
         </div>
       </div>
