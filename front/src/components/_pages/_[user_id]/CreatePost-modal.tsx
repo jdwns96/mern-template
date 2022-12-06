@@ -14,6 +14,7 @@ export default function CreatePostModal() {
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const onClose = () => {
     console.log("close evt");
+    setStep("imageStep");
     setIsToggle(false);
     searchParams.delete("modal");
     setSearchParams(searchParams);
@@ -29,7 +30,12 @@ export default function CreatePostModal() {
 
   return (
     <Modal open={isToggle} onClose={onClose}>
-      <div className=" w-full max-w-[500px] mx-auto bg-white rounded-md z-50">
+      <div
+        className=" w-full max-w-[500px] mx-auto bg-white rounded-md z-50 dark:bg-[#3D3D3D]"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         {step === "imageStep" && (
           <>
             <header className="p-2 flex justify-center choco-border-b relative w-full whitespace-nowrap">

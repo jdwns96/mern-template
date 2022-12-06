@@ -26,18 +26,18 @@ export default function Modal(props: ModalProps) {
 
   // @TODO modal 처리 미흡
   return (
-    <div
-      className={cn("fixed w-screen h-screen top-0 left-0 right-0 bottom-0 z-30 bg-black bg-opacity-50 flex flex-col justify-center items-center overflow-hidden", open === false && "hidden")}
-      onClick={onClose}
-    >
+    <>
       <div
-        className="z-50 overflow-y-auto w-full "
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
+        className={cn("fixed w-screen h-screen top-0 left-0 right-0 bottom-0 z-30 bg-black bg-opacity-50 flex flex-col justify-center items-center overflow-hidden", open === false && "hidden")}
+        onClick={onClose}
       >
-        <div className="p-2 ">{children}</div>
+        <div className="z-50 overflow-y-auto w-full ">
+          <div className="p-2">{children}</div>
+        </div>
       </div>
-    </div>
+      {/* <div
+        className={cn("fixed w-screen h-screen top-0 left-0 right-0 bottom-0 z-30 bg-black bg-opacity-50 flex flex-col justify-center items-center overflow-hidden", open === false && "hidden")}
+      ></div> */}
+    </>
   );
 }

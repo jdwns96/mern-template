@@ -10,10 +10,20 @@
 .toastui-editor-defaultUI {
   border: none;
 }
+.toastui-editor-defaultUI-toolbar {
+  border-radius: 0;
+}
 
 .toastui-editor-mode-switch {
   display: none !important;
 }
+
+.toastui-editor-ww-container {
+  background: inherit;
+  color: inherit !important;
+}
 .toastui-editor-contents {
+  background: inherit;
+  color: inherit !important;
   font-size: 1.125rem;
 }
