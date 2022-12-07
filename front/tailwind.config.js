@@ -8,6 +8,8 @@ module.exports = {
         snack: " rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
       },
       colors: {
+        "snack-default": "#61DAFB",
+
         "snack-blue": "#2D3857",
         "snack-orange": "#EA6a62",
         "snack-sky": "#1f8ce6",

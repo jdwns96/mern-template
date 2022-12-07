@@ -101,7 +101,10 @@
 }
 
 body {
-  background-color: #f3f2ef;
+  /* background-color: #ffffff; */
+  /* background-color: #fafafa; */
+  /* background-color: #f3f2ef; */
+  background-color: #f0f2f5;
 }
 
 .snack-background {

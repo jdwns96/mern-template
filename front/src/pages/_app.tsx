@@ -81,6 +81,7 @@ export default function App() {
 
   if (!initial) return <AppSpin />;
 
+  //dark:bg-[#2D2D2D]
   return (
     <div className="text-choco-text dark:text-choco-text-dark dark:bg-[#2D2D2D]">
       <Routes location={location} key={location.pathname}>

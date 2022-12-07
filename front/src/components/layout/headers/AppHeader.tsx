@@ -50,7 +50,7 @@ export default function AppHeader() {
   };
 
   return (
-    <header className=" fixed top-0 left-0 right-0 bg-[#F8F9F9] z-10 px-0 shadow-md border-solid border-b-4 border-choco-bronze-100 dark:bg-[hsl(0,0%,22.5%)] dark:text-choco-bronze-100">
+    <header className=" fixed top-0 left-0 right-0 z-10 px-0 bg-white dark:bg-[#20232A] dark:text-choco-bronze-100 shadow-md">
       <AppBar position="static" sx={HEADER} className="max-w-3xl mx-auto">
         <Toolbar variant="dense" className="flex justify-between" sx={{ padding: 0 }}>
           <div
@@ -59,54 +59,55 @@ export default function AppHeader() {
               navigate("/");
             }}
           >
+            <span className="px-1">
+              <img src={require("src/assets/images/React-icon.svg.png")} className="w-10 h-10 object-contain" />
+            </span>
             {/* <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
               <Logo />
             </IconButton> */}
-            <span className="px-2">
-              <Logo />
-            </span>
+            {/* <Logo /> */}
             <Typography variant="h6" color="inherit" component="div" className="flex items-center">
-              <span className="text-choco-bronze-200 ">CHOCO</span>
+              <span className="text-md text-snack-default">Snack</span>
             </Typography>
           </div>
-          <ul className="flex items-center h-12">
+          <ul className="flex items-center h-14 text-[#65676B]">
             <li
-              className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block"
+              className=" hover:text-snack-default hover:border-b-4 border-solid border-snack-default h-full relative p-3 px-2 cursor-pointer hover: transition-all  hidden  md:flex items-center "
               onClick={() => {
                 navigate("/");
               }}
             >
-              <Home style={{ color: "hsl(28,31%,52%)" }} />
+              <Home style={{ color: "inherit", width: 26, height: 26 }} />
             </li>
-            <li className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block">
-              <Search style={{ color: "hsl(28,31%,52%)" }} />
+            <li className=" hover:text-snack-default hover:border-b-4 border-solid border-snack-default h-full  relative p-3 px-2 cursor-pointer hover: transition-all  hidden md:flex items-center ">
+              <Search style={{ color: "inherit", width: 26, height: 26 }} />
             </li>
             <li
-              className="relative p-2 px-1.5 cursor-pointer hover: transition-all  hidden md:block"
+              className=" hover:text-snack-default hover:border-b-4 border-solid border-snack-default h-full  relative p-3 px-2 cursor-pointer hover: transition-all  hidden md:flex items-center "
               onClick={() => {
                 navigate("/chat");
               }}
             >
-              <Telegram style={{ color: "hsl(28,31%,52%)" }} />
+              <Telegram style={{ color: "inherit", width: 26, height: 26 }} />
             </li>
-            <li className="relative transition-all" ref={accountMenu}>
+            <li className="h-full  relative transition-all hover:text-snack-default hover:border-b-4 border-solid border-snack-default" ref={accountMenu}>
               <div
-                className="cursor-pointer p-2 px-1.5 "
+                className="h-full cursor-pointer p-2 px-1.5 flex items-center"
                 onClick={() => {
                   setAccountToggle((p) => !p);
                 }}
               >
                 {/* <span>{user_id}</span> */}
                 <div className="px-2 md:px-0">
-                  <div className="w-6 h-6 rounded-full  border border-solid edge-border"></div>
+                  <div className="w-8 h-8 rounded-full  border border-solid edge-border "></div>
                 </div>
               </div>
               <article
                 className={cn(
-                  "dark:bg-[#2D2D2D] dark:text-choco-bronze-100 dark:border-choco-silver-300",
+                  "dark:bg-[#2D2D2D] dark:text-choco-bronze-100 dark:border-choco-silver-300 rounded-lg",
                   "block  transition-all z-50 overflow-auto bg-white text-[#262626] shadow-lg",
-                  "fixed top-12 bottom-0 left-0 right-0 w-full h-screen border-t border-solid ",
-                  "md:absolute md:top-14 md:right-0 md:bottom-[unset] md:w-[240px] md:h-auto md:border md:border-solid ",
+                  "fixed top-14 bottom-0 left-0 right-0 w-full h-screen border-t border-solid ",
+                  "md:absolute md:top-16 md:right-0 md:bottom-[unset] md:w-[240px] md:h-auto md:border md:border-solid ",
                   "md:left-[unset]",
                   !accountToggle && "hidden",
                 )}
@@ -119,7 +120,7 @@ export default function AppHeader() {
                     }}
                   >
                     <div className="text-sm">
-                      <AccountCircle style={{ color: "hsl(28,31%,52%)" }} />
+                      <AccountCircle style={{ color: "inherit", width: 26, height: 26 }} />
                     </div>
                     <div className="text-md ml-2  ">
                       <span>프로필</span>
@@ -132,7 +133,7 @@ export default function AppHeader() {
                     }}
                   >
                     <div className="text-sm">
-                      <Settings style={{ color: "hsl(28,31%,52%)" }} />
+                      <Settings style={{ color: "inherit", width: 26, height: 26 }} />
                     </div>
                     <div className="text-md ml-2  ">
                       <span>계정관리</span>
