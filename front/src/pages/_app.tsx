@@ -8,7 +8,10 @@ import { setAuth } from "src/store/auth";
 
 import toast, { Toaster } from "react-hot-toast";
 // pages
-import { routes } from "./routes";
+import { routes, appRoutes, etcRoutes, signRoute } from "./routes";
+import AppHeader from "src/components/layout/headers/AppHeader";
+import AppBottomNav from "src/components/layout/bottom-nav/AppBottomNav";
+import AppTemplate from "src/components/layout/templates/AppTemplate";
 
 export default function App() {
   const location = useLocation();
@@ -81,7 +84,7 @@ export default function App() {
 
   if (!initial) return <AppSpin />;
 
-  //dark:bg-[#2D2D2D]
+  // dark:bg-[#2D2D2D]
   return (
     <div className="text-choco-text dark:text-choco-text-dark dark:bg-[#2D2D2D]">
       <Routes location={location} key={location.pathname}>
@@ -92,4 +95,20 @@ export default function App() {
       <Toaster position="bottom-center" />
     </div>
   );
+  // return (
+  //   <>
+  //     <div className="text-choco-text dark:text-choco-text-dark dark:bg-[#2D2D2D]">
+  //       <div className="w-full min-h-screen">
+  //         <AppHeader />
+  //         <Routes location={location} key={location.pathname}>
+  //           {appRoutes.map(({ key, path, Component }) => (
+  //             <Route key={key} path={path} element={<Component />} />
+  //           ))}
+  //         </Routes>
+  //         <AppBottomNav />
+  //       </div>
+  //       <Toaster position="bottom-center" />
+  //     </div>
+  //   </>
+  // );
 }

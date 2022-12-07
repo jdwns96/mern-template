@@ -60,3 +60,56 @@ export const routes: Routes[] = [
     Component: NotFound,
   },
 ];
+
+export const signRoute = [
+  {
+    key: 2,
+    path: "/signin",
+    Component: SigninPage,
+  },
+];
+
+export const appRoutes = [
+  {
+    key: 1,
+    path: "/",
+    Component: HomePage,
+  },
+  {
+    key: 2,
+    path: "/signin",
+    Component: SigninPage,
+  },
+  {
+    key: 3,
+    path: "/user/:user_id",
+    Component: UserIdPage,
+  },
+  {
+    key: 4,
+    path: "/user/:user_id/followee",
+    Component: UserFolloweePage,
+  },
+  {
+    key: 5,
+    path: "/user/:user_id/following",
+    Component: UserFollowingPage,
+  },
+  {
+    key: 6,
+    path: "/account",
+    Component: AccountPage,
+  },
+  {
+    key: 7,
+    path: "/chat",
+    Component: ChatPage,
+  },
+];
+export const etcRoutes = [
+  {
+    key: 404,
+    path: "*",
+    Component: NotFound,
+  },
+];

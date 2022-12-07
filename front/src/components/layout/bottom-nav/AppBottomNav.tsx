@@ -25,7 +25,7 @@ export default function AppBottomNav() {
   };
 
   return (
-    <nav className="fixed left-0 right-0 bottom-0 justify-center flex md:hidden z-10 shadow-lg bg-white dark:bg-[#20232A] border-t border-solid border-gray-200">
+    <nav className="fixed left-0 right-0 bottom-0 justify-center flex md:hidden z-10 shadow-xl bg-white dark:bg-[#20232A] snack-border-t">
       <BottomNavigation value={path} onChange={handleChange} sx={BOTTOM_NAV}>
         <BottomNavigationAction label="Home" value="/" icon={<Home style={{ color: "inherit" }} />} sx={BOTTOM_NAV_ITEMS} />
         <BottomNavigationAction label="Search" value="/search" icon={<Search />} sx={BOTTOM_NAV_ITEMS} />
