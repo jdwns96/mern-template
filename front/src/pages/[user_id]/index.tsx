@@ -184,23 +184,25 @@ export default function DynamicUserIdPage() {
               <div></div>
             </header>
             <main className="">
-              <div className="flex px-1">
-                <div className="m-1 w-1/3 relative  border-choco-gold-300 dark:border-choco-bronze-100 border-2">
-                  <div className=" pb-[100%] bg-black rounded-sm cursor-pointer overflow-hidden">
-                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover" />
+              {/* if post exist */}
+              <div className="flex px-3">
+                <div className="m-2 w-1/3 relative   ">
+                  <div className=" pb-[100%] bg-black rounded-md cursor-pointer overflow-hidden">
+                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
                   </div>
                 </div>
-                <div className="m-1 w-1/3 relative  border-choco-gold-300 dark:border-choco-bronze-100 border-2">
-                  <div className=" pb-[100%] bg-black rounded-sm cursor-pointer overflow-hidden">
-                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover" />
+                <div className="m-2 w-1/3 relative   ">
+                  <div className=" pb-[100%] bg-black rounded-md cursor-pointer overflow-hidden">
+                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
                   </div>
                 </div>
-                <div className="m-1 w-1/3 relative  border-choco-gold-300 dark:border-choco-bronze-100 border-2">
-                  <div className=" pb-[100%] bg-black rounded-sm cursor-pointer overflow-hidden">
-                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover" />
+                <div className="m-2 w-1/3 relative   ">
+                  <div className=" pb-[100%] bg-black rounded-md cursor-pointer overflow-hidden">
+                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
                   </div>
                 </div>
               </div>
+              {/* if post exist */}
               {/* if post is not exist */}
               {/* <article className="p-8 h-72 flex flex-col justify-center items-center">
                 <div className="mb-8">

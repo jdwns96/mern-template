@@ -93,7 +93,9 @@ export default function CreatePostModal() {
             <main className="w-full choco-border-b">
               <Editor ref={editorRef} />
             </main>
-            <footer className="p-1"></footer>
+            <footer className="p-1">
+              <div className="flex "></div>
+            </footer>
           </>
         )}
       </div>
