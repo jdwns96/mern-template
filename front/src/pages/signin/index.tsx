@@ -162,7 +162,7 @@ export default function SigninPage() {
                         <button
                           type="submit"
                           className={cn(
-                            "bg-transparent  font-semibold  py-3 px-4 border rounded flex  justify-center w-full",
+                            "bg-transparent  font-semibold  py-3 px-4 border rounded flex  justify-center w-full ",
                             "dark:border-snack-bronze dark:text-snack-bronze",
                             false && "opacity-50 cursor-not-allowed hover:text-snack-sky hover:border-snack-sky",
                           )}
@@ -174,7 +174,8 @@ export default function SigninPage() {
                         <button
                           type="button"
                           className={cn(
-                            "cursor-not-allowed",
+                            // hover:bg-[#BBEFFD]
+                            "cursor-not-allowed ",
                             " bg-snack-default text-white font-semibold  py-3 px-4 border  rounded flex  justify-center w-full",
                             false && "opacity-50 cursor-not-allowed hover:text-snack-sky hover:border-snack-sky",
                           )}
