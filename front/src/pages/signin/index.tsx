@@ -90,10 +90,10 @@ export default function SigninPage() {
             <div className="mb-0 lg:mb-0">
               <div className="py-0 ">
                 <div className=" flex items-center">
-                  <p className="text-choco-bronze-200">
-                    <Logo />
+                  <p className="text-snack-default">
+                    <img src={require("src/assets/images/React-icon.svg.png")} className="w-10 h-10 object-contain" />
                   </p>
-                  <p className="font-extrabold ml-2 text-3xl text-choco-bronze-200">CHOCO</p>
+                  <p className="font-extrabold ml-2 text-3xl text-snack-default">Snack</p>
                 </div>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function SigninPage() {
                       <div className="flex mb-8 flex-wrap">
                         <p className="text-[12px] mr-2">아이디 혹은 패스워드를 잊어버리셨나요?</p>
                         <p
-                          className="text-[12px] cursor-pointer text-choco-sky "
+                          className="text-[12px] cursor-pointer text-snack-sky "
                           onClick={() => {
                             // navigate("/join");
                           }}
@@ -162,7 +162,7 @@ export default function SigninPage() {
                         <button
                           type="submit"
                           className={cn(
-                            "bg-transparent  text-choco-bronze-200 font-semibold  py-3 px-4 border border-choco-bronze-200 rounded flex  justify-center w-full",
+                            "bg-transparent  font-semibold  py-3 px-4 border rounded flex  justify-center w-full",
                             "dark:border-snack-bronze dark:text-snack-bronze",
                             false && "opacity-50 cursor-not-allowed hover:text-snack-sky hover:border-snack-sky",
                           )}
@@ -175,7 +175,7 @@ export default function SigninPage() {
                           type="button"
                           className={cn(
                             "cursor-not-allowed",
-                            " bg-choco-bronze-200 text-white font-semibold  py-3 px-4 border border-choco-bronze-200  rounded flex  justify-center w-full",
+                            " bg-snack-default text-white font-semibold  py-3 px-4 border  rounded flex  justify-center w-full",
                             false && "opacity-50 cursor-not-allowed hover:text-snack-sky hover:border-snack-sky",
                           )}
                         >

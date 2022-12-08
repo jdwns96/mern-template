@@ -3,7 +3,7 @@ import { AccountCircle, EggAlt, Home, MenuBook, Person, Search, Settings, Telegr
 import { AppBar, IconButton, Menu, Toolbar, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "src/store";
 import cn from "classnames";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { removeAuth } from "src/store/auth";
 import client from "src/libs/axios";
 
@@ -15,6 +15,8 @@ export default function AppHeader() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation(); // total path information
+  console.log(location.pathname);
 
   const [isDark, setIsDark] = useState<boolean>(localStorage.getItem("color-theme") === "dark" ? true : false);
   const onDarkModeToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +52,7 @@ export default function AppHeader() {
   };
 
   return (
-    <header className=" fixed top-0 left-0 right-0 z-10 px-0 bg-white dark:bg-[#20232A] dark:text-choco-bronze-100 shadow-md">
+    <header className=" fixed top-0 left-0 right-0 z-10 px-0 bg-white dark:bg-[#20232A]  shadow-md">
       <AppBar position="static" sx={HEADER} className="max-w-3xl mx-auto">
         <Toolbar variant="dense" className="flex justify-between" sx={{ padding: 0 }}>
           <div
@@ -72,25 +74,36 @@ export default function AppHeader() {
           </div>
           <ul className="flex items-center h-14 text-[#65676B]">
             <li
-              className=" hover:text-snack-default hover:border-b-4 border-solid border-snack-default h-full relative p-3 px-2 cursor-pointer hover: transition-all  hidden  md:flex items-center "
+              className={cn(
+                " hover:bg-gray-50 dark:hover:bg-gray-900 border-solid border-snack-default h-full relative p-3 px-2 cursor-pointer hover: transition-all  hidden  md:flex items-center",
+                location.pathname === "/" && "border-b-4 text-snack-default",
+              )}
               onClick={() => {
                 navigate("/");
               }}
             >
               <Home style={{ color: "inherit", width: 26, height: 26 }} />
             </li>
-            <li className=" hover:text-snack-default hover:border-b-4 border-solid border-snack-default h-full  relative p-3 px-2 cursor-pointer hover: transition-all  hidden md:flex items-center ">
+            <li
+              className={cn(
+                "hover:bg-gray-50 dark:hover:bg-gray-900 border-solid border-snack-default h-full  relative p-3 px-2 cursor-pointer hover: transition-all  hidden md:flex items-center ",
+                location.pathname === "/search" && "border-b-4 text-snack-default",
+              )}
+            >
               <Search style={{ color: "inherit", width: 26, height: 26 }} />
             </li>
             <li
-              className=" hover:text-snack-default hover:border-b-4 border-solid border-snack-default h-full  relative p-3 px-2 cursor-pointer hover: transition-all  hidden md:flex items-center "
+              className={cn(
+                " hover:bg-gray-50 dark:hover:bg-gray-900 border-solid border-snack-default h-full  relative p-3 px-2 cursor-pointer hover: transition-all  hidden md:flex items-center ",
+                location.pathname === "/chat" && "border-b-4 text-snack-default",
+              )}
               onClick={() => {
                 navigate("/chat");
               }}
             >
               <Telegram style={{ color: "inherit", width: 26, height: 26 }} />
             </li>
-            <li className="h-full  relative transition-all hover:text-snack-default hover:border-b-4 border-solid border-snack-default" ref={accountMenu}>
+            <li className="h-full  relative transition-all border-solid border-snack-default" ref={accountMenu}>
               <div
                 className="h-full cursor-pointer p-2 px-1.5 flex items-center"
                 onClick={() => {
@@ -104,7 +117,7 @@ export default function AppHeader() {
               </div>
               <article
                 className={cn(
-                  "dark:bg-[#2D2D2D] dark:text-choco-bronze-100 dark:border-choco-silver-300 rounded-lg",
+                  "dark:bg-[#2D2D2D]   rounded-lg",
                   "block  transition-all z-50 overflow-auto bg-white text-[#262626] shadow-lg",
                   "fixed top-14 bottom-0 left-0 right-0 w-full h-screen border-t border-solid ",
                   "md:absolute md:top-16 md:right-0 md:bottom-[unset] md:w-[240px] md:h-auto md:border md:border-solid ",
@@ -112,42 +125,42 @@ export default function AppHeader() {
                   !accountToggle && "hidden",
                 )}
               >
-                <ul className="py-1 text-sm  choco-border-b dark:border-choco-silver-300">
+                <ul className="py-1 text-sm  snack-border-b ">
                   <li
-                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:bg-choco-bronze-300"
+                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:"
                     onClick={() => {
                       navigate(`/user/${user_id}`);
                     }}
                   >
                     <div className="text-sm">
-                      <AccountCircle style={{ color: "inherit", width: 26, height: 26 }} />
+                      <AccountCircle style={{ color: "inherit", width: 22, height: 22 }} />
                     </div>
                     <div className="text-md ml-2  ">
                       <span>프로필</span>
                     </div>
                   </li>
                   <li
-                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:bg-choco-bronze-300"
+                    className="flex items-center   px-4 py-2 hover:bg-gray-50 transition-all cursor-pointer dark:hover:"
                     onClick={() => {
                       navigate(`/account`);
                     }}
                   >
                     <div className="text-sm">
-                      <Settings style={{ color: "inherit", width: 26, height: 26 }} />
+                      <Settings style={{ color: "inherit", width: 22, height: 22 }} />
                     </div>
                     <div className="text-md ml-2  ">
                       <span>계정관리</span>
                     </div>
                   </li>
                 </ul>
-                <nav className="px-5 py-2 choco-border-b flex justify-between dark:border-choco-silver-300 transition-all">
+                <nav className="px-5 py-2 choco-border-b flex justify-between  transition-all">
                   <span className=" text-sm">DARK MODE</span>
                   <label className="inline-flex relative items-center cursor-pointer">
                     <input type="checkbox" value="" className="sr-only peer" onChange={onDarkModeToggle} checked={isDark} />
-                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-choco-bronze-100 rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-choco-bronze-300"></div>
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-choco-bronze-100 rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:"></div>
                   </label>
                 </nav>
-                <div className="flex border-solid  border-gray-300 px-5 py-2 hover:bg-gray-50  cursor-pointer dark:hover:bg-choco-bronze-300 transition-all" onClick={onLogout}>
+                <div className="flex border-solid  border-gray-300 px-5 py-2 hover:bg-gray-50  cursor-pointer  transition-all" onClick={onLogout}>
                   <button className="text-sm">
                     <span>로그아웃</span>
                   </button>

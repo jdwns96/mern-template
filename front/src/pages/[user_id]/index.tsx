@@ -42,7 +42,7 @@ export default function DynamicUserIdPage() {
     <AppTemplate>
       <div className="w-full h-full">
         <div className="max-w-3xl mx-auto mt-6 px-4">
-          <article className="bg-white shadow-md rounded-md mb-2 dark:bg-[#3D3D3D]">
+          <article className="bg-white shadow-md rounded-md mb-4 dark:bg-[#3D3D3D]">
             <div className="relative ">
               {/* background */}
               <div className="bg-gray-500 rounded-t-md">
@@ -105,7 +105,7 @@ export default function DynamicUserIdPage() {
               </div>
             </main>
             <div className="py-4">
-              <div className="flex px-6 text-sm">
+              <div className="flex px-6 text-md">
                 <div className="w-full text-center">
                   <span className="cursor-pointer">
                     <span className="text-snack-sky ">포스트</span>
