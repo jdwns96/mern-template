@@ -86,7 +86,7 @@ export default function App() {
 
   // dark:bg-[#2D2D2D]
   return (
-    <div className="text-snack-text dark:text-snack-text-dark dark:bg-[#2D2D2D]">
+    <div className="text-snack-text dark:text-[#e4e4e4] dark:bg-[#2D2D2D]">
       <Routes location={location} key={location.pathname}>
         {routes.map(({ key, path, Component }) => (
           <Route key={key} path={path} element={<Component />} />

@@ -117,13 +117,13 @@ export default function FollowingPage() {
                       <div className="flex w-full justify-between border-b border-solid border-gray-300  p-3 md:px-5 dark:border-choco-gray-300" key={v.id}>
                         <div className="flex ">
                           <div>
-                            <Link to={`/${v.user_id}`}>
+                            <Link to={`/user/${v.user_id}`}>
                               <div className="rounded-full w-16 h-16 bg-gray-300"></div>
                             </Link>
                           </div>
                           <div className="ml-6">
                             <p>
-                              <Link to={`/${v.user_id}`}>{v.name}</Link>
+                              <Link to={`/user/${v.user_id}`}>{v.name}</Link>
                             </p>
                             <p>{v.introduction ?? "-"}</p>
                           </div>

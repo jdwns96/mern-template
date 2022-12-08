@@ -81,12 +81,12 @@ export default function AccountPage() {
                 <Typography>
                   <div className="flex flex-row mb-4">
                     <div className="flex md:justify-end  md:w-28">
-                      <div className="w-12 h-12 rounded-full choco-border"></div>
+                      <div className="w-12 h-12 rounded-full snack-border"></div>
                     </div>
                     <div className="ml-4 w-full max-w-[300px]">
                       <div className="mb-2">
                         <h2 className="text-lg font-semibold">{user_id}</h2>
-                        <p className="text-choco-sky text-sm">
+                        <p className="text-snack-sky text-sm">
                           <span className="cursor-pointer">이미지 변경</span>
                         </p>
                       </div>
@@ -100,7 +100,7 @@ export default function AccountPage() {
                     </div>
                     <div className="md:ml-4 w-full max-w-[300px]">
                       <div className="mb-2">
-                        <input id="name" className="choco-input" name="name" type="text" value={profileInputs.name} onChange={onChangeInputs} />
+                        <input id="name" className="snack-input" name="name" type="text" value={profileInputs.name} onChange={onChangeInputs} />
                       </div>
                       <div className="text-[#828282] text-xs">사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.</div>
                     </div>
@@ -113,13 +113,13 @@ export default function AccountPage() {
                     </div>
                     <div className="md:ml-4 w-full max-w-[300px]">
                       <div className="mb-2">
-                        <input id="introduction" className="choco-input" name="introduction" type="textarea" value={profileInputs.introduction} onChange={onChangeInputs} />
+                        <input id="introduction" className="snack-input" name="introduction" type="textarea" value={profileInputs.introduction} onChange={onChangeInputs} />
                       </div>
                       <div className="text-[#828282] text-xs">회원님의 정보나 하고싶은 말을 입력해주세요.</div>
                     </div>
                   </div>
                   <footer className="flex justify-end">
-                    <button className="choco-btn" onClick={onProfileSave}>
+                    <button className="snack-btn" onClick={onProfileSave}>
                       저장
                     </button>
                   </footer>
@@ -146,7 +146,7 @@ export default function AccountPage() {
                     </div>
                     <div className="md:ml-4 w-full max-w-[300px]">
                       <div className="mb-2">
-                        <input id="currentPassword" className="choco-input" name="currentPassword" type="textarea" value={passwordInputs.currentPassword} onChange={onChangePasswordInputs} />
+                        <input id="currentPassword" className="snack-input" name="currentPassword" type="textarea" value={passwordInputs.currentPassword} onChange={onChangePasswordInputs} />
                       </div>
                       <div className="text-[#828282] text-xs">비밀번호 변경을 위해 회원님의 현재 비밀번호를 입력해주세요.</div>
                     </div>
@@ -159,7 +159,7 @@ export default function AccountPage() {
                     </div>
                     <div className="md:ml-4 w-full max-w-[300px]">
                       <div className="mb-2">
-                        <input id="newPassword" className="choco-input" name="newPassword" type="textarea" value={passwordInputs.newPassword} onChange={onChangePasswordInputs} />
+                        <input id="newPassword" className="snack-input" name="newPassword" type="textarea" value={passwordInputs.newPassword} onChange={onChangePasswordInputs} />
                       </div>
                       <div className="text-[#828282] text-xs">변경할 비밀번호를 입력해주세요.</div>
                     </div>
@@ -174,7 +174,7 @@ export default function AccountPage() {
                       <div className="mb-2">
                         <input
                           id="newPasswordConfirmation"
-                          className="choco-input"
+                          className="snack-input"
                           name="newPasswordConfirmation"
                           type="textarea"
                           value={passwordInputs.newPasswordConfirmation}
@@ -185,7 +185,7 @@ export default function AccountPage() {
                     </div>
                   </div>
                   <footer className="flex justify-end">
-                    <button className="choco-btn" onClick={onProfileSave}>
+                    <button className="snack-btn" onClick={onProfileSave}>
                       저장
                     </button>
                   </footer>

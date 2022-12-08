@@ -5,7 +5,7 @@ import { useAppSelector } from "src/store";
 
 import imageTest from "src/assets/images/image-test.jpg";
 import cn from "classnames";
-import { Add, Edit, ModeEditOutline } from "@mui/icons-material";
+import { Add, Edit, ModeEditOutline, Settings } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import AppFooter from "src/components/layout/footers/AppFooter";
 import { useUserFollowingCheckQuery, useUserQuery } from "src/query/user";
@@ -64,7 +64,7 @@ export default function DynamicUserIdPage() {
               {/* profile */}
               <div className="py-6"></div>
             </div>
-            <main className="py-2 px-6 pb-4 choco-border-b">
+            <main className="py-2 px-6 pb-4 snack-border-b">
               <div>
                 <h1 className=" flex justify-between">
                   <p className="text-2xl font-bold ">{userData?.user_id}</p>
@@ -72,21 +72,23 @@ export default function DynamicUserIdPage() {
                     {id === userData?.id ? (
                       <>
                         <Link to="/account">
-                          <button className="choco-btn">정보 관리</button>
+                          <IconButton style={{ color: "inherit" }}>
+                            <Settings style={{ color: "inherit" }} />
+                          </IconButton>
                         </Link>
                       </>
                     ) : (
                       <>
                         <div>
-                          <button className="choco-btn">메세지</button>
+                          <button className="snack-btn">메세지</button>
                         </div>
                         <div>
                           {isUserFollowingCheckError || !userFollowingCheckData?.isFollowing ? (
-                            <button className="choco-btn" onClick={onFollow}>
+                            <button className="snack-btn" onClick={onFollow}>
                               팔로우
                             </button>
                           ) : (
-                            <button className="choco-btn bg-choco-blue hover:bg-choco-blue border-choco-blue text-white" onClick={onUnfollowClick}>
+                            <button className="snack-btn bg-snack-blue hover:bg-snack-blue border-snack-blue text-white" onClick={onUnfollowClick}>
                               언팔로우
                             </button>
                           )}
@@ -188,17 +190,17 @@ export default function DynamicUserIdPage() {
               <div className="flex px-3">
                 <div className="m-2 w-1/3 relative   ">
                   <div className=" pb-[100%] bg-black rounded-md cursor-pointer overflow-hidden">
-                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
+                    <img src={image} alt="snack" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
                   </div>
                 </div>
                 <div className="m-2 w-1/3 relative   ">
                   <div className=" pb-[100%] bg-black rounded-md cursor-pointer overflow-hidden">
-                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
+                    <img src={image} alt="snack" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
                   </div>
                 </div>
                 <div className="m-2 w-1/3 relative   ">
                   <div className=" pb-[100%] bg-black rounded-md cursor-pointer overflow-hidden">
-                    <img src={image} alt="choco" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
+                    <img src={image} alt="snack" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
                   </div>
                 </div>
               </div>
@@ -207,7 +209,7 @@ export default function DynamicUserIdPage() {
               {/* <article className="p-8 h-72 flex flex-col justify-center items-center">
                 <div className="mb-8">
                   <span
-                    className="text-choco-gold-300 cursor-pointer"
+                    className="text-snack-gold-300 cursor-pointer"
                     onClick={() => {
                       navigate("?modal=post");
                     }}

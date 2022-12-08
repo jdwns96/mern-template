@@ -21,22 +21,22 @@ async function sqlInitUtils() {
       name: "kane william",
     });
     await User.create({
-      user_id: " baz",
+      user_id: "baz",
       password: hash,
       name: " park jimin",
     });
     await User.create({
-      user_id: " qux",
+      user_id: "qux",
       password: hash,
       name: " kim taehyung",
     });
     await User.create({
-      user_id: " quux",
+      user_id: "quux",
       password: hash,
       name: " jeon jungkook",
     });
     await User.create({
-      user_id: " corge",
+      user_id: "corge",
       password: hash,
       name: " jeon jeongguk",
     });
@@ -46,29 +46,29 @@ async function sqlInitUtils() {
       name: " min yoongi",
     });
     await User.create({
-      user_id: " garply",
+      user_id: "garply",
       password: hash,
       name: "  jung hoseok",
     });
     await User.create({
-      user_id: " waldo",
+      user_id: "waldo",
       password: hash,
       name: " jeon jeongguk",
     });
     await User.create({
-      user_id: "  waldo",
+      user_id: "waldoa",
       password: hash,
       name: "  kim namjoon",
     });
     await User.create({
-      user_id: " fred",
+      user_id: "fred",
       password: hash,
       name: " kim seokjin",
     });
     await User.create({
-      user_id: " plugh",
+      user_id: "plugh",
       password: hash,
-      name: " park jimin",
+      name: "park jimin",
     });
 
     const user = await User.findOne({ where: { id: 1 } });

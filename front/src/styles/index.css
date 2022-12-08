@@ -4,26 +4,26 @@
 
 @layer components {
   .snack-input {
-    @apply bg-[#FAFBFC] text-gray-900 text-sm border focus:ring-snack-sky focus:border-snack-sky block w-full px-2 p-1.5 rounded-sm outline-none transition-all;
+    @apply bg-[#FAFBFC] text-gray-900 text-sm border focus:ring-snack-sky focus:border-snack-sky block w-full px-2 p-1.5 rounded-md outline-none transition-all;
   }
   .snack-btn {
-    @apply bg-white text-[0.875rem] py-1 px-4 border border-solid border-snack-sky rounded-sm relative inline-flex items-center hover:bg-gray-100 transition-all;
+    @apply bg-white text-[0.875rem] py-1 px-4 border border-solid border-snack-sky rounded-md relative inline-flex items-center hover:bg-gray-100 transition-all;
   }
 
   .snack-border {
-    @apply border border-solid border-gray-200;
+    @apply border border-solid border-gray-200 dark:border-gray-400;
   }
   .snack-border-l {
-    @apply border-l border-solid border-gray-200;
+    @apply border-l border-solid border-gray-200 dark:border-gray-400;
   }
   .snack-border-r {
-    @apply border-r border-solid border-gray-200;
+    @apply border-r border-solid border-gray-200 dark:border-gray-400;
   }
   .snack-border-b {
-    @apply border-b border-solid border-gray-200;
+    @apply border-b border-solid border-gray-200 dark:border-gray-400;
   }
   .snack-border-t {
-    @apply border-t border-solid border-gray-200;
+    @apply border-t border-solid border-gray-200 dark:border-gray-400;
   }
 
   .snack-section {
