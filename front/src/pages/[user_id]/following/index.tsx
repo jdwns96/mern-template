@@ -14,9 +14,19 @@ import { useAppSelector } from "src/store";
 
 import { FollowSkeleton } from "src/components/common/skeleton";
 
+/**
+ * request
+ * 1. 로그인 한 유저의 ID
+ * 2. 보고있는 페이지 계정의 ID
+ * 3. 필터 정렬 user_id (최신순, 오름차순, 내림차순)
+ * 4. 검색 조건
+ *
+ * response
+ *
+ */
 export default function FollowingPage() {
   // redux
-  const { id, user_id, name } = useAppSelector((store) => store.auth);
+  const { id, user_id, name } = useAppSelector((store) => store.auth); // 접속한 사용자
 
   // get user_id from url
   const { user_id: url_user_id } = useParams<{ user_id: string }>();
@@ -25,6 +35,8 @@ export default function FollowingPage() {
 
   const { isLoading: isFollowingCountLoading, data: followingCountData } = useUserFollowingCountQuery(url_user_id); // 팔로우 전체 목록
   const { isLoading: isFollowingsLoading, data: followingsData } = useUserFollowingsQuery(url_user_id, pageParam ?? "1"); // 쿼리 스트링이 없으면 1 보낸다.
+
+  console.log(followingsData);
 
   const onFollow = () => {};
   const onUnFollow = () => {};
@@ -64,12 +76,12 @@ export default function FollowingPage() {
                 <span className="font-semibold">{url_user_id}</span> 님의 팔로우 목록
               </h1>
               <div className="flex ">
-                <button className="choco-btn text-sm rounded-r-none px-2 whitespace-nowrap">
+                <button className="snack-btn text-sm rounded-r-none px-2 whitespace-nowrap">
                   <Link to="../followee" relative="path" className="grow">
                     팔로워
                   </Link>
                 </button>
-                <button className="choco-btn choco-btn--selected text-sm rounded-l-none px-2 -ml-1 whitespace-nowrap">
+                <button className="snack-btn snack-btn--selected text-sm rounded-l-none px-2 -ml-1 whitespace-nowrap">
                   {/* <Link to="./" className="grow"> */}
                   팔로우
                   {/* </Link> */}
@@ -79,19 +91,19 @@ export default function FollowingPage() {
             {/* <nav className="flex">
               <div>
                 <Link to="../followee" relative="path">
-                  <button className="choco-btn py-2">팔로워</button>
+                  <button className="snack-btn py-2">팔로워</button>
                 </Link>
               </div>
               <div>
                 <Link to="">
-                  <button className="choco-btn py-2 bg-choco-bronze-200">팔로우</button>
+                  <button className="snack-btn py-2 bg-snack-bronze-200">팔로우</button>
                 </Link>
               </div>
             </nav> */}
-            <nav className="flex justify-between choco-border-b pb-3 px-4">
+            <nav className="flex justify-between snack-border-b pb-3 px-4">
               <div className="flex">
                 <div className="grow ">
-                  <select id="countries" className="choco-input">
+                  <select id="countries" className="snack-input">
                     <option value="0">최신순</option>
                     <option value="1">오름차순</option>
                     <option value="2">내림차순</option>
@@ -102,10 +114,10 @@ export default function FollowingPage() {
                 <div className="relative w-full">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                      <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path>
                     </svg>
                   </div>
-                  <input type="text" id="simple-search" className="choco-input pl-10" placeholder="Search" required />
+                  <input type="text" id="simple-search" className="snack-input pl-10" placeholder="Search" required />
                 </div>
               </div>
             </nav>
@@ -114,7 +126,7 @@ export default function FollowingPage() {
                 {isFollowingsLoading
                   ? new Array(10).fill(0).map((_, i) => <FollowSkeleton />)
                   : followingsData?.map((v, i) => (
-                      <div className="flex w-full justify-between border-b border-solid border-gray-300  p-3 md:px-5 dark:border-choco-gray-300" key={v.id}>
+                      <div className="flex w-full justify-between border-b border-solid border-gray-300  p-3 md:px-5 dark:border-snack-gray-300" key={v.id}>
                         <div className="flex ">
                           <div>
                             <Link to={`/user/${v.user_id}`}>
@@ -128,7 +140,7 @@ export default function FollowingPage() {
                             <p>{v.introduction ?? "-"}</p>
                           </div>
                         </div>
-                        <div className="flex items-center">{id ? <button className="choco-btn">언팔로우</button> : <button className="choco-btn">팔로우</button>}</div>
+                        <div className="flex items-center">{id ? <button className="snack-btn">언팔로우</button> : <button className="snack-btn">팔로우</button>}</div>
                       </div>
                     ))}
               </div>
@@ -155,8 +167,8 @@ export default function FollowingPage() {
                       <button
                         className={cn(
                           "w-8 h-8 rounded-md hover:bg-gray-100 ",
-                          v === Number(pageParam) && "border border-solid border-choco-bronze-200 text-choco-bronze-200",
-                          v === 1 && pageParam === null && "border border-solid border-choco-bronze-200 text-choco-bronze-200",
+                          v === Number(pageParam) && "border border-solid border-snack-bronze-200 text-snack-bronze-200",
+                          v === 1 && pageParam === null && "border border-solid border-snack-bronze-200 text-snack-bronze-200",
                         )}
                       >
                         {v}

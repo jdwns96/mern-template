@@ -6,6 +6,7 @@ import cn from "classnames";
 
 import Editor from "src/components/common/editor";
 import useUpdate from "src/hooks/useUpdate";
+import { v4 as uuid } from "uuid";
 
 type Images = {
   id: string;
@@ -46,8 +47,7 @@ export default function CreatePostModal() {
         const reader = new FileReader();
         reader.readAsDataURL(files[i]);
         reader.onload = () => {
-          // @TODO 난수처리
-          setImages((prev) => [...prev, { id: Date.now() + "", imageFile: files[i], imageBase64: reader.result as string }]);
+          setImages((prev) => [...prev, { id: uuid(), imageFile: files[i], imageBase64: reader.result as string }]);
         };
       }
     }
@@ -192,7 +192,7 @@ export default function CreatePostModal() {
                 images.map((img, index) => (
                   <li
                     key={index}
-                    className={cn("relative p-0.5 bg-gray-50")}
+                    className={cn("relative  bg-gray-50 cursor-pointer")}
                     onClick={() => {
                       setImage(img);
                     }}
@@ -204,6 +204,7 @@ export default function CreatePostModal() {
                   </li>
                 ))}
             </ul>
+            <nav className="p-1"></nav>
           </>
         )}
         {step === "contentStep" && (
