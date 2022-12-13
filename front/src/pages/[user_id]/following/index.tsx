@@ -16,13 +16,18 @@ import { FollowSkeleton } from "src/components/common/skeleton";
 
 /**
  * request
- * 1. 로그인 한 유저의 ID
- * 2. 보고있는 페이지 계정의 ID
+ * 1. 로그인 한 유저의 ID (서버에서 추출 가능)
+ * 2. 보고있는 페이지 계정의 ID (dynamic query 로 추출)
  * 3. 필터 정렬 user_id (최신순, 오름차순, 내림차순)
  * 4. 검색 조건
  *
- * response
+ * ?page=1&sort=[default | asc | desc]&search=""
  *
+ *  만약 2 이 존재하지 않는경우 return 404;
+ *
+ * response
+ * 1. total length
+ * 2. list []
  */
 export default function FollowingPage() {
   // redux
@@ -145,51 +150,51 @@ export default function FollowingPage() {
                     ))}
               </div>
             </main>
-          </article>
-          {isFollowingCountLoading ? (
-            <div> skeleton </div>
-          ) : (
-            <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4 dark:bg-[#3D3D3D]">
-              <ul className="flex  p-2">
-                <li className="mx-0.5">
-                  <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
-                    <KeyboardDoubleArrowLeft />
-                  </button>
-                </li>
-                <li className="mx-0.5">
-                  <button className="w-8 h-8" onClick={onClickPageIcon(2)}>
-                    <KeyboardArrowLeft />
-                  </button>
-                </li>
-                {paginationUtil(followingCountData ?? 0, pageParam === null ? 1 : Number(pageParam), 5).map((v, i) => (
-                  <Link key={v} to={`?page=${v}`}>
-                    <li className="mx-0.5">
-                      <button
-                        className={cn(
-                          "w-8 h-8 rounded-md hover:bg-gray-100 ",
-                          v === Number(pageParam) && "border border-solid border-snack-bronze-200 text-snack-bronze-200",
-                          v === 1 && pageParam === null && "border border-solid border-snack-bronze-200 text-snack-bronze-200",
-                        )}
-                      >
-                        {v}
-                      </button>
-                    </li>
-                  </Link>
-                ))}
+            {isFollowingCountLoading ? (
+              <div> skeleton </div>
+            ) : (
+              <article className="bg-white shadow-md rounded-md  w-full flex justify-center p-4 dark:bg-[#3D3D3D]">
+                <ul className="flex  p-2">
+                  <li className="mx-0.5">
+                    <button className="w-8 h-8" onClick={onClickPageIcon(1)}>
+                      <KeyboardDoubleArrowLeft />
+                    </button>
+                  </li>
+                  <li className="mx-0.5">
+                    <button className="w-8 h-8" onClick={onClickPageIcon(2)}>
+                      <KeyboardArrowLeft />
+                    </button>
+                  </li>
+                  {paginationUtil(followingCountData ?? 0, pageParam === null ? 1 : Number(pageParam), 5).map((v, i) => (
+                    <Link key={v} to={`?page=${v}`}>
+                      <li className="mx-0.5">
+                        <button
+                          className={cn(
+                            "w-8 h-8 rounded-md hover:bg-gray-100 ",
+                            v === Number(pageParam) && "border border-solid border-snack-bronze-200 text-snack-bronze-200",
+                            v === 1 && pageParam === null && "border border-solid border-snack-bronze-200 text-snack-bronze-200",
+                          )}
+                        >
+                          {v}
+                        </button>
+                      </li>
+                    </Link>
+                  ))}
 
-                <li className="mx-0.5">
-                  <button className="w-8 h-8" onClick={onClickPageIcon(3)}>
-                    <KeyboardArrowRight />
-                  </button>
-                </li>
-                <li className="mx-0.5">
-                  <button className="w-8 h-8" onClick={onClickPageIcon(4)}>
-                    <KeyboardDoubleArrowRight />
-                  </button>
-                </li>
-              </ul>
-            </article>
-          )}
+                  <li className="mx-0.5">
+                    <button className="w-8 h-8" onClick={onClickPageIcon(3)}>
+                      <KeyboardArrowRight />
+                    </button>
+                  </li>
+                  <li className="mx-0.5">
+                    <button className="w-8 h-8" onClick={onClickPageIcon(4)}>
+                      <KeyboardDoubleArrowRight />
+                    </button>
+                  </li>
+                </ul>
+              </article>
+            )}
+          </article>
         </div>
       </div>
       <AppFooter />

@@ -11,7 +11,7 @@ export default function AppSpin() {
             <p className="text-choco-bronze-200">
               <EggAlt style={{ width: 48, height: 48 }} />
             </p>
-            <p className="font-extrabold ml-2 text-choco-bronze-200">CHOCO</p>
+            <p className="font-extrabold ml-2 text-choco-bronze-200">snack</p>
           </div>
         </div>
         <LinearProgress />

@@ -16,7 +16,9 @@ import img from "src/assets/images/image-test.jpg";
 
 import { PostSkeleton } from "src/components/common/skeleton";
 
-export default function HomePage() {
+import withAccess from "src/hoc/withAccess";
+
+function HomePage() {
   const { id, user_id, name } = useAppSelector((store) => store.auth);
 
   // infinity scroll
@@ -133,3 +135,5 @@ export default function HomePage() {
     </AppTemplate>
   );
 }
+
+export default withAccess(HomePage);

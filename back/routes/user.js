@@ -44,6 +44,13 @@ router.get("/user/:user_id", async (req, res, next) => {
   }
 });
 
+// router.get("/user/:user_id/following", async (req, res, next) => {
+//   try {
+//   } catch (e) {
+//     next(e);
+//   }
+// });
+
 // 유저 팔로우 상태 확인
 // @TODO 코드 수정
 router.get(
