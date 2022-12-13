@@ -56,7 +56,6 @@ export default function CreatePostModal() {
   const onClose = () => {
     if (!window.confirm("작성중이던 포스트가 제거됩니다. 정말 나가시겠습니까?")) return null;
 
-    console.log("close evt");
     setIsToggle(false);
     searchParams.delete("modal");
     setSearchParams(searchParams);
@@ -77,6 +76,8 @@ export default function CreatePostModal() {
   useEffect(() => {
     if (qsValue === "post") {
       setIsToggle(true);
+    } else {
+      setIsToggle(false);
     }
   }, [searchParams]);
 

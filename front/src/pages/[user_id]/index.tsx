@@ -11,6 +11,7 @@ import AppFooter from "src/components/layout/footers/AppFooter";
 import { useUserFollowingCheckQuery, useUserQuery } from "src/query/user";
 
 import { CreatePostModal } from "src/components/_pages/_[user_id]";
+import PostModal from "src/components/common/post";
 
 import image from "src/assets/images/image-test.jpg";
 
@@ -190,7 +191,9 @@ export default function DynamicUserIdPage() {
               <div className="flex px-3">
                 <div className="m-2 w-1/3 relative   ">
                   <div className=" pb-[100%] bg-black rounded-md cursor-pointer overflow-hidden">
-                    <img src={image} alt="snack" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" />
+                    <img src={image} alt="snack" className="absolute top-0 bottom-0 w-full h-full object-cover rounded-md" onClick={() => {
+                       navigate("?post=1");
+                    }}/>
                   </div>
                 </div>
                 <div className="m-2 w-1/3 relative   ">
@@ -227,8 +230,9 @@ export default function DynamicUserIdPage() {
       </div>
       {/* <div>{url_user_id}</div>
       <div>{user_id}</div> */}
-      <AppFooter />
       <CreatePostModal />
+      <PostModal />
+      <AppFooter />
     </AppTemplate>
   );
 }
